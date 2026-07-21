@@ -79,14 +79,6 @@ export const projects = [
     stack: ["Nmap", "Nessus", "Nikto", "Cybersecurity"],
     icon: "Shield",
     impact: "Identifies and analyzes system vulnerabilities."
-  },
-  {
-    title: "Incident Response & Attack Simulation Lab",
-    featured: false,
-    description: "A cybersecurity lab involving Kali Linux, Metasploitable, DVWA, and Metasploit for attack simulation and incident-response analysis.",
-    stack: ["Kali Linux", "Metasploit", "DVWA", "Incident Response"],
-    icon: "Shield",
-    impact: "Simulates attacks for incident-response analysis."
   }
 ];
 

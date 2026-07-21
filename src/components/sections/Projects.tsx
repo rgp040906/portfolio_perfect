@@ -21,7 +21,6 @@ export default function Projects() {
         >
           <div>
             <h2 className="text-3xl md:text-5xl font-bold mb-2">
-              <span className="font-mono text-cyan-400 text-2xl md:text-4xl mr-4">{"// 03_"}</span>
               PROJECTS
             </h2>
             <div className="w-20 h-1 bg-gradient-accent"></div>
