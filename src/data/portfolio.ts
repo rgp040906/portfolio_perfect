@@ -155,7 +155,6 @@ export const certifications = [
 ];
 
 export const achievements = [
-  "Cyber Security Intern – Thiranex",
   "Shortlisted, IBM-Corizo Summer Internship Program",
   "AMD Developer Hackathon ACT II participant",
   "1st Prize, Zero Day event (SKCET)"

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Terminal, Mail, FileText } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { SiLeetcode, SiTryhackme, SiHackthebox } from "react-icons/si";
 import NodeNetwork from "../ui/NodeNetwork";
 import { useEffect, useState } from "react";
 
@@ -80,13 +81,22 @@ export default function Hero() {
             </a>
 
             <div className="flex items-center gap-3 ml-4">
-              <a href="https://github.com/rgp040906" target="_blank" rel="noopener noreferrer" className="interactive p-3 rounded-full glass border border-card-border hover:border-cyan-400/50 hover:text-cyan-400 transition-colors">
+              <a href="https://github.com/rgp040906" target="_blank" rel="noopener noreferrer" className="interactive p-3 rounded-full glass border border-card-border hover:border-foreground/50 hover:text-foreground transition-colors" title="GitHub">
                 <FaGithub size={20} />
               </a>
-              <a href="https://www.linkedin.com/in/guru-prasanna-r-492b66327" target="_blank" rel="noopener noreferrer" className="interactive p-3 rounded-full glass border border-card-border hover:border-violet-400/50 hover:text-violet-400 transition-colors">
+              <a href="https://leetcode.com/u/Rgprasanna/" target="_blank" rel="noopener noreferrer" className="interactive p-3 rounded-full glass border border-card-border hover:border-[#FFA116]/50 hover:text-[#FFA116] transition-colors" title="LeetCode">
+                <SiLeetcode size={20} />
+              </a>
+              <a href="https://tryhackme.com/p/XyPhor" target="_blank" rel="noopener noreferrer" className="interactive p-3 rounded-full glass border border-card-border hover:border-white/50 hover:text-white transition-colors" title="TryHackMe">
+                <SiTryhackme size={20} />
+              </a>
+              <a href="https://app.hackthebox.com/profile/Rgprasanna" target="_blank" rel="noopener noreferrer" className="interactive p-3 rounded-full glass border border-card-border hover:border-[#9FEF00]/50 hover:text-[#9FEF00] transition-colors" title="Hack The Box">
+                <SiHackthebox size={20} />
+              </a>
+              <a href="https://www.linkedin.com/in/guru-prasanna-r-492b66327" target="_blank" rel="noopener noreferrer" className="interactive p-3 rounded-full glass border border-card-border hover:border-violet-400/50 hover:text-violet-400 transition-colors" title="LinkedIn">
                 <FaLinkedin size={20} />
               </a>
-              <a href="#contact" className="interactive p-3 rounded-full glass border border-card-border hover:border-cyan-400/50 hover:text-cyan-400 transition-colors">
+              <a href="#contact" className="interactive p-3 rounded-full glass border border-card-border hover:border-cyan-400/50 hover:text-cyan-400 transition-colors" title="Contact">
                 <Mail size={20} />
               </a>
             </div>

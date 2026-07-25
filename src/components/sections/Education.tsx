@@ -4,31 +4,34 @@ import { motion, useInView } from "framer-motion";
 import { GraduationCap, BookOpen } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 
-const Counter = ({ value, label }: { value: number, label: string }) => {
+const StatBox = ({ value, label, isString = false, colorClass = "text-cyan-400" }: { value: number | string, label: string, isString?: boolean, colorClass?: string }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (isInView) {
+    if (!isString && typeof value === 'number' && isInView) {
       let start = 0;
       const duration = 2000;
-      const stepTime = Math.abs(Math.floor(duration / value));
+      const stepTime = Math.max(10, Math.floor(duration / value));
       const timer = setInterval(() => {
         start += 1;
         setCount(start);
-        if (start === value) clearInterval(timer);
+        if (start >= value) {
+          setCount(value);
+          clearInterval(timer);
+        }
       }, stepTime);
       return () => clearInterval(timer);
     }
-  }, [isInView, value]);
+  }, [isInView, value, isString]);
 
   return (
-    <div ref={ref} className="text-center p-6 glass rounded-xl border border-card-border">
-      <div className="text-4xl md:text-5xl font-bold font-mono text-cyan-400 mb-2">
-        {count}+
+    <div ref={ref} className="text-center p-6 glass rounded-xl border border-card-border flex flex-col justify-center min-h-[140px]">
+      <div className={`text-3xl md:text-4xl lg:text-5xl font-bold font-mono ${colorClass} mb-2 break-words`}>
+        {isString ? value : `${count}+`}
       </div>
-      <div className="text-foreground/70 font-medium uppercase tracking-wider text-sm">{label}</div>
+      <div className="text-foreground/70 font-medium uppercase tracking-wider text-xs md:text-sm">{label}</div>
     </div>
   );
 };
@@ -76,7 +79,7 @@ export default function Education() {
                     <span>Relevant Coursework</span>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    {["Ethical Hacking", "Classical Cryptography", "Cyber Law & Digital Forensics", "Machine Learning", "IT Infrastructure Auditing"].map(course => (
+                    {["Ethical Hacking", "Classical Cryptography", "Cyber Law & Digital Forensics", "Machine Learning", "IT Infrastructure Auditing", "Security Assessment and Risk Analysis", "Web Exploitation and Defence", "Cloud Security", "Cloud Infrastructure and Services Management"].map(course => (
                       <span key={course} className="px-3 py-1 bg-background/50 border border-card-border rounded text-sm text-foreground/80">
                         {course}
                       </span>
@@ -100,10 +103,11 @@ export default function Education() {
             </motion.div>
             
             <div className="grid grid-cols-2 gap-4 md:gap-6">
-              <Counter value={50} label="Labs Completed" />
-              <Counter value={100} label="Problems Solved" />
-              <Counter value={30} label="CTF Challenges" />
-              <Counter value={10} label="Security Projects" />
+              <StatBox value={187} label="LeetCode Solved" colorClass="text-[#FFA116]" />
+              <StatBox value="ADEPT" label="TryHackMe Rank" isString={true} colorClass="text-white" />
+              <StatBox value="PROFILE" label="Hack The Box" isString={true} colorClass="text-[#9FEF00]" />
+              <StatBox value={30} label="CTF Challenges" colorClass="text-violet-400" />
+              <StatBox value={50} label="Security Labs" colorClass="text-cyan-400" />
             </div>
             
             <motion.div 

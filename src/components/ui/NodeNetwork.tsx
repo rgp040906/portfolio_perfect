@@ -55,10 +55,11 @@ function Particles({ count = 100 }) {
 
   return (
     <>
-      <pointLight ref={light} distance={40} intensity={8} color="#00E5C7" />
+      <pointLight ref={light} distance={50} intensity={12} color="#00E5C7" />
+      <pointLight distance={40} intensity={8} color="#7C3AED" position={[-15, 10, -10]} />
       <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
-        <dodecahedronGeometry args={[0.2, 0]} />
-        <meshStandardMaterial color="#7C3AED" roughness={0.1} metalness={0.8} />
+        <sphereGeometry args={[0.12, 16, 16]} />
+        <meshStandardMaterial color="#A78BFA" emissive="#7C3AED" emissiveIntensity={0.6} roughness={0.2} metalness={0.9} />
       </instancedMesh>
     </>
   );
@@ -74,10 +75,10 @@ export default function NodeNetwork() {
   if (!mounted) return null;
 
   return (
-    <div className="absolute inset-0 z-0 opacity-50 pointer-events-none">
+    <div className="absolute inset-0 z-0 opacity-75 pointer-events-none">
       <Canvas camera={{ position: [0, 0, 15], fov: 60 }}>
-        <ambientLight intensity={0.2} />
-        <Particles count={250} />
+        <ambientLight intensity={0.1} />
+        <Particles count={400} />
       </Canvas>
     </div>
   );

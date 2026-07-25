@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Send, FileText, CheckCircle, AlertCircle } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { SiLeetcode, SiTryhackme, SiHackthebox } from "react-icons/si";
 
 export default function Contact() {
   const [formState, setFormState] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -53,12 +54,24 @@ export default function Contact() {
                 <span className="text-lg font-mono">guruprasannargp2006@gmail.com</span>
               </a>
 
-              <div className="flex gap-4 pt-4">
-                <a href="https://github.com/rgp040906" target="_blank" rel="noreferrer" className="interactive p-3 bg-card border border-card-border rounded-lg text-foreground/80 hover:text-cyan-400 hover:border-cyan-400/50 transition-all">
+              <div className="flex flex-wrap gap-4 pt-4">
+                <a href="https://github.com/rgp040906" target="_blank" rel="noreferrer" className="interactive p-3 bg-card border border-card-border rounded-lg text-foreground/80 hover:text-foreground hover:border-foreground/50 transition-all" title="GitHub">
                   <FaGithub size={24} />
                 </a>
-                <a href="https://www.linkedin.com/in/guru-prasanna-r-492b66327" target="_blank" rel="noreferrer" className="interactive p-3 bg-card border border-card-border rounded-lg text-foreground/80 hover:text-violet-400 hover:border-violet-500/50 transition-all">
+                <a href="https://leetcode.com/u/Rgprasanna/" target="_blank" rel="noreferrer" className="interactive p-3 bg-card border border-card-border rounded-lg text-foreground/80 hover:text-[#FFA116] hover:border-[#FFA116]/50 transition-all" title="LeetCode">
+                  <SiLeetcode size={24} />
+                </a>
+                <a href="https://tryhackme.com/p/XyPhor" target="_blank" rel="noreferrer" className="interactive p-3 bg-card border border-card-border rounded-lg text-foreground/80 hover:text-white hover:border-white/50 transition-all" title="TryHackMe">
+                  <SiTryhackme size={24} />
+                </a>
+                <a href="https://app.hackthebox.com/profile/Rgprasanna" target="_blank" rel="noreferrer" className="interactive p-3 bg-card border border-card-border rounded-lg text-foreground/80 hover:text-[#9FEF00] hover:border-[#9FEF00]/50 transition-all" title="Hack The Box">
+                  <SiHackthebox size={24} />
+                </a>
+                <a href="https://www.linkedin.com/in/guru-prasanna-r-492b66327" target="_blank" rel="noreferrer" className="interactive p-3 bg-card border border-card-border rounded-lg text-foreground/80 hover:text-violet-400 hover:border-violet-500/50 transition-all" title="LinkedIn">
                   <FaLinkedin size={24} />
+                </a>
+                <a href="mailto:guruprasannargp2006@gmail.com" className="interactive p-3 bg-card border border-card-border rounded-lg text-foreground/80 hover:text-cyan-400 hover:border-cyan-400/50 transition-all" title="Email">
+                  <Mail size={24} />
                 </a>
                 <a href="#" className="interactive p-3 bg-card border border-card-border rounded-lg text-foreground/80 hover:text-cyan-400 hover:border-cyan-400/50 transition-all flex items-center gap-2 px-6">
                   <FileText size={20} />
