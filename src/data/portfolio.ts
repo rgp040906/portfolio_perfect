@@ -154,8 +154,77 @@ export const certifications = [
   { name: "Cisco CyberOps Associate", issuer: "Cisco" }
 ];
 
+export const professionalCertifications = [
+  {
+    title: "Full Ethical Hacking & Penetration Testing Course",
+    platform: "Udemy",
+    instructor: "Oak Academy Team",
+    duration: "25 Hours",
+    completed: "August 2026",
+    credentialUrl: "#",
+    skills: [
+      "Ethical Hacking",
+      "Penetration Testing",
+      "Kali Linux",
+      "Metasploit",
+      "Burp Suite",
+      "Nmap"
+    ]
+  },
+  {
+    title: "CCIE Security v5",
+    platform: "Udemy",
+    instructor: "Khawar Butt",
+    duration: "31.5 Hours",
+    completed: "August 2026",
+    credentialUrl: "#",
+    skills: [
+      "Cisco Security",
+      "VPN",
+      "Firewalls",
+      "AAA",
+      "Secure Networking"
+    ]
+  },
+  {
+    title: "Cisco Network Security Master Class",
+    platform: "Udemy",
+    instructor: "Matt Carey",
+    duration: "4 Hours",
+    completed: "August 2026",
+    credentialUrl: "#",
+    skills: [
+      "ACL",
+      "IDS/IPS",
+      "Cisco Security",
+      "Network Defense"
+    ]
+  },
+  {
+    title: "Linux Red Hat Certified Engineer (RHCE - EX294)",
+    platform: "Udemy",
+    instructor: "Imran Afzal",
+    duration: "8 Hours",
+    completed: "August 2026",
+    credentialUrl: "#",
+    skills: [
+      "Red Hat Linux",
+      "Ansible",
+      "Bash",
+      "System Administration"
+    ]
+  }
+];
+
+export const certificationStats = {
+  totalCertifications: "4",
+  totalLearningHours: "68.5+",
+  focusAreas: ["Ethical Hacking", "Linux", "Cisco Security", "Network Security"]
+};
+
 export const achievements = [
   "Shortlisted, IBM-Corizo Summer Internship Program",
   "AMD Developer Hackathon ACT II participant",
   "1st Prize, Zero Day event (SKCET)"
 ];
+

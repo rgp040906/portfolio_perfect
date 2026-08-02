@@ -14,11 +14,11 @@ export default function Home() {
     <>
       <Hero />
       <About />
+      <Certifications />
       <Skills />
       <Projects />
       <SecurityLab />
       <Experience />
-      <Certifications />
       <Education />
       <Platforms />
       <Contact />
