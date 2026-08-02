@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import {
   cybersecurityCertifications,
   jobSimulations,
@@ -19,6 +20,89 @@ import {
   Sparkles,
   Building2
 } from "lucide-react";
+
+// Interactive Card Component with 3D Tilt and Mouse Spotlight Tracking
+const InteractiveTiltCard = ({
+  children,
+  className = "",
+  glowColor = "cyan",
+}: {
+  children: React.ReactNode;
+  className?: string;
+  glowColor?: "cyan" | "violet" | "amber";
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0, opacity: 0 });
+
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 25 });
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 25 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["8deg", "-8deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-8deg", "8deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    const xPct = mouseX / rect.width - 0.5;
+    const yPct = mouseY / rect.height - 0.5;
+
+    x.set(xPct);
+    y.set(yPct);
+
+    setMousePos({ x: mouseX, y: mouseY, opacity: 1 });
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+    setMousePos((prev) => ({ ...prev, opacity: 0 }));
+  };
+
+  const glowBg =
+    glowColor === "amber"
+      ? "rgba(251, 191, 36, 0.18)"
+      : glowColor === "violet"
+      ? "rgba(124, 58, 237, 0.18)"
+      : "rgba(0, 229, 199, 0.18)";
+
+  const borderColor =
+    glowColor === "amber"
+      ? "hover:border-amber-400/60 hover:shadow-[0_0_25px_rgba(251,191,36,0.15)]"
+      : glowColor === "violet"
+      ? "hover:border-violet-400/60 hover:shadow-[0_0_25px_rgba(124,58,237,0.15)]"
+      : "hover:border-cyan-400/60 hover:shadow-[0_0_25px_rgba(0,229,199,0.15)]";
+
+  return (
+    <div className="[perspective:1000px] w-full h-full">
+      <motion.div
+        ref={ref}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+        className={`glass rounded-xl border border-card-border transition-all duration-300 relative group interactive ${borderColor} ${className}`}
+      >
+        {/* Dynamic Mouse Spotlight Glow following cursor */}
+        <div
+          className="pointer-events-none absolute -inset-px transition-opacity duration-300 rounded-xl z-0"
+          style={{
+            opacity: mousePos.opacity,
+            background: `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, ${glowBg}, transparent 80%)`,
+          }}
+        />
+
+        <div style={{ transform: "translateZ(12px)" }} className="relative z-10 flex flex-col h-full p-6 md:p-8">
+          {children}
+        </div>
+      </motion.div>
+    </div>
+  );
+};
 
 export default function Certifications() {
   return (
@@ -40,7 +124,7 @@ export default function Certifications() {
           </p>
         </motion.div>
 
-        {/* Statistics Row */}
+        {/* Statistics Row with Interactive Mouse Animation */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -48,47 +132,53 @@ export default function Certifications() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
         >
-          <div className="glass p-6 rounded-xl border border-card-border flex items-center gap-4 hover:border-cyan-400/40 transition-colors">
-            <div className="p-3.5 bg-cyan-400/10 border border-cyan-400/20 rounded-xl text-cyan-400">
-              <Trophy size={28} />
-            </div>
-            <div>
-              <div className="text-2xl md:text-3xl font-bold text-foreground">
-                {certificationStats.totalCertifications}
+          <InteractiveTiltCard glowColor="cyan">
+            <div className="flex items-center gap-4">
+              <div className="p-3.5 bg-cyan-400/10 border border-cyan-400/20 rounded-xl text-cyan-400 group-hover:scale-110 transition-transform">
+                <Trophy size={28} />
               </div>
-              <div className="text-xs md:text-sm font-mono text-foreground/60">
-                🏆 Total Certifications
+              <div>
+                <div className="text-2xl md:text-3xl font-bold text-foreground">
+                  {certificationStats.totalCertifications}
+                </div>
+                <div className="text-xs md:text-sm font-mono text-foreground/60">
+                  🏆 Total Certifications
+                </div>
               </div>
             </div>
-          </div>
+          </InteractiveTiltCard>
 
-          <div className="glass p-6 rounded-xl border border-card-border flex items-center gap-4 hover:border-violet-400/40 transition-colors">
-            <div className="p-3.5 bg-violet-500/10 border border-violet-500/20 rounded-xl text-violet-400">
-              <Clock size={28} />
-            </div>
-            <div>
-              <div className="text-2xl md:text-3xl font-bold text-foreground">
-                {certificationStats.totalLearningHours}
+          <InteractiveTiltCard glowColor="violet">
+            <div className="flex items-center gap-4">
+              <div className="p-3.5 bg-violet-500/10 border border-violet-500/20 rounded-xl text-violet-400 group-hover:scale-110 transition-transform">
+                <Clock size={28} />
               </div>
-              <div className="text-xs md:text-sm font-mono text-foreground/60">
-                ⏱ Total Learning Hours
+              <div>
+                <div className="text-2xl md:text-3xl font-bold text-foreground">
+                  {certificationStats.totalLearningHours}
+                </div>
+                <div className="text-xs md:text-sm font-mono text-foreground/60">
+                  ⏱ Total Learning Hours
+                </div>
               </div>
             </div>
-          </div>
+          </InteractiveTiltCard>
 
-          <div className="glass p-6 rounded-xl border border-card-border flex items-center gap-4 hover:border-cyan-400/40 transition-colors">
-            <div className="p-3.5 bg-cyan-400/10 border border-cyan-400/20 rounded-xl text-cyan-400">
-              <Shield size={28} />
-            </div>
-            <div>
-              <div className="text-sm font-semibold text-cyan-400 mb-1 flex items-center gap-1">
-                🛡 Focus Areas
+          <InteractiveTiltCard glowColor="cyan">
+            <div className="flex items-center gap-4">
+              <div className="p-3.5 bg-cyan-400/10 border border-cyan-400/20 rounded-xl text-cyan-400 group-hover:scale-110 transition-transform">
+                <Shield size={28} />
               </div>
-              <div className="text-xs text-foreground/80 font-mono leading-snug">
-                {certificationStats.focusAreas.join(", ")}
+              <div>
+                <div className="text-sm font-semibold text-cyan-400 mb-1 flex items-center gap-1">
+                  🛡 Focus Areas
+                </div>
+                <div className="text-xs text-foreground/80 font-mono leading-snug">
+                  {certificationStats.focusAreas.join(", ")}
+                </div>
               </div>
             </div>
-          </div>
+          </InteractiveTiltCard>
         </motion.div>
 
         {/* --- SUB-SECTION 1: CYBERSECURITY & NETWORKING CERTIFICATIONS --- */}
@@ -108,11 +198,9 @@ export default function Certifications() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="glass p-6 md:p-8 rounded-xl border border-card-border hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(0,229,199,0.12)] transition-all duration-300 relative group flex flex-col justify-between interactive"
+                className="h-full"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-violet-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-
-                <div className="relative z-10 flex flex-col h-full">
+                <InteractiveTiltCard glowColor="cyan">
                   {/* Header: Icon & Source Badge */}
                   <div className="flex justify-between items-start mb-4">
                     <div className="p-3 bg-background/50 rounded-lg border border-card-border text-cyan-400 group-hover:scale-110 group-hover:border-cyan-400/40 transition-all duration-300">
@@ -169,12 +257,12 @@ export default function Certifications() {
                     href={cert.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-background/50 hover:bg-cyan-500/10 border border-card-border hover:border-cyan-400/50 text-cyan-400 hover:text-cyan-300 rounded-lg font-mono text-sm font-medium transition-all duration-300 group/btn"
+                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-background/50 hover:bg-cyan-500/10 border border-card-border hover:border-cyan-400/50 text-cyan-400 hover:text-cyan-300 rounded-lg font-mono text-sm font-medium transition-all duration-300 group/btn interactive"
                   >
                     <span>View Certificate ↗</span>
                     <ExternalLink size={16} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                   </a>
-                </div>
+                </InteractiveTiltCard>
               </motion.div>
             ))}
           </div>
@@ -197,11 +285,9 @@ export default function Certifications() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="glass p-6 md:p-8 rounded-xl border border-card-border hover:border-violet-400/50 hover:shadow-[0_0_25px_rgba(124,58,237,0.15)] transition-all duration-300 relative group flex flex-col justify-between interactive"
+                className="h-full"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-cyan-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-
-                <div className="relative z-10 flex flex-col h-full">
+                <InteractiveTiltCard glowColor="violet">
                   {/* Header: Icon & Badge */}
                   <div className="flex justify-between items-start mb-4">
                     <div className="p-3 bg-background/50 rounded-lg border border-card-border text-violet-400 group-hover:scale-110 group-hover:border-violet-400/40 transition-all duration-300">
@@ -248,12 +334,12 @@ export default function Certifications() {
                     href={sim.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-background/50 hover:bg-violet-500/10 border border-card-border hover:border-violet-400/50 text-violet-400 hover:text-violet-300 rounded-lg font-mono text-sm font-medium transition-all duration-300 group/btn"
+                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-background/50 hover:bg-violet-500/10 border border-card-border hover:border-violet-400/50 text-violet-400 hover:text-violet-300 rounded-lg font-mono text-sm font-medium transition-all duration-300 group/btn interactive"
                   >
                     <span>View Certificate ↗</span>
                     <ExternalLink size={16} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                   </a>
-                </div>
+                </InteractiveTiltCard>
               </motion.div>
             ))}
           </div>
@@ -276,11 +362,9 @@ export default function Certifications() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="glass p-6 md:p-8 rounded-xl border border-card-border hover:border-amber-400/50 hover:shadow-[0_0_25px_rgba(251,191,36,0.12)] transition-all duration-300 relative group flex flex-col justify-between interactive"
+                className="h-full"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-cyan-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-
-                <div className="relative z-10 flex flex-col h-full">
+                <InteractiveTiltCard glowColor="amber">
                   {/* Header: Trophy Icon */}
                   <div className="flex justify-between items-start mb-4">
                     <div className="p-3 bg-background/50 rounded-lg border border-card-border text-amber-400 group-hover:scale-110 group-hover:border-amber-400/40 transition-all duration-300">
@@ -321,7 +405,7 @@ export default function Certifications() {
                       </span>
                     ))}
                   </div>
-                </div>
+                </InteractiveTiltCard>
               </motion.div>
             ))}
           </div>
@@ -330,5 +414,6 @@ export default function Certifications() {
     </section>
   );
 }
+
 
 
