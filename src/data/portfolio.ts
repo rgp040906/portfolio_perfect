@@ -154,22 +154,21 @@ export const certifications = [
   { name: "Cisco CyberOps Associate", issuer: "Cisco" }
 ];
 
-export const professionalCertifications = [
+export const certificationStats = {
+  totalCertifications: "15",
+  totalLearningHours: "68.5+",
+  focusAreas: ["Ethical Hacking", "Linux", "Cisco Security", "Network Security", "Risk Management"]
+};
+
+export const cybersecurityCertifications = [
   {
     title: "Full Ethical Hacking & Penetration Testing Course",
     platform: "Udemy",
     instructor: "Oak Academy Team",
     duration: "25 Hours",
     completed: "August 2026",
-    credentialUrl: "#",
-    skills: [
-      "Ethical Hacking",
-      "Penetration Testing",
-      "Kali Linux",
-      "Metasploit",
-      "Burp Suite",
-      "Nmap"
-    ]
+    credentialUrl: "https://drive.google.com/file/d/1Z5LX9f_gJpq_Vh9YFfoRbZmMu1WF85Fq/view?usp=drivesdk",
+    skills: ["Ethical Hacking", "Penetration Testing", "Kali Linux", "Metasploit", "Burp Suite", "Nmap"]
   },
   {
     title: "CCIE Security v5",
@@ -177,14 +176,8 @@ export const professionalCertifications = [
     instructor: "Khawar Butt",
     duration: "31.5 Hours",
     completed: "August 2026",
-    credentialUrl: "#",
-    skills: [
-      "Cisco Security",
-      "VPN",
-      "Firewalls",
-      "AAA",
-      "Secure Networking"
-    ]
+    credentialUrl: "https://drive.google.com/file/d/1jZrvzu-3npU_Tu7AMqFmFAuHOMV3ipjR/view?usp=drivesdk",
+    skills: ["Cisco Security", "VPN", "Firewalls", "AAA", "Secure Networking"]
   },
   {
     title: "Cisco Network Security Master Class",
@@ -192,39 +185,120 @@ export const professionalCertifications = [
     instructor: "Matt Carey",
     duration: "4 Hours",
     completed: "August 2026",
-    credentialUrl: "#",
-    skills: [
-      "ACL",
-      "IDS/IPS",
-      "Cisco Security",
-      "Network Defense"
-    ]
+    credentialUrl: "https://drive.google.com/file/d/1JMlUxF6aSBQ8SCIdKBXftD4KSJI3sbT6/view?usp=drivesdk",
+    skills: ["ACL", "IDS/IPS", "Cisco Security", "Network Defense"]
   },
   {
-    title: "Linux Red Hat Certified Engineer (RHCE - EX294)",
+    title: "Linux Administration (Red Hat) – Udemy Training",
     platform: "Udemy",
     instructor: "Imran Afzal",
     duration: "8 Hours",
     completed: "August 2026",
-    credentialUrl: "#",
-    skills: [
-      "Red Hat Linux",
-      "Ansible",
-      "Bash",
-      "System Administration"
-    ]
+    credentialUrl: "https://drive.google.com/file/d/16nxJYGXPd9XzR26S1ad_bsWpwnnyjOIC/view?usp=drivesdk",
+    skills: ["Red Hat Linux", "Ansible", "Bash", "System Administration"]
+  },
+  {
+    title: "Introduction to Critical Infrastructure Protection (ICIP)",
+    platform: "OPSWAT Academy",
+    instructor: "OPSWAT Academy",
+    duration: "",
+    completed: "July 2026",
+    credentialUrl: "https://drive.google.com/file/d/1toBrqS1T69Zrn3ybWy2zuTpK8MsNW9fy/view?usp=drivesdk",
+    skills: ["ICS Security", "Critical Infrastructure", "OT Security"]
+  },
+  {
+    title: "Cyber Security and Privacy",
+    platform: "NPTEL",
+    instructor: "NPTEL (12-week course)",
+    duration: "",
+    completed: "October 2025",
+    credentialUrl: "https://drive.google.com/file/d/1GIrgMQpAdAStCmQ0BeN0JEVC5cxohadi/view?usp=drivesdk",
+    skills: ["Privacy Engineering", "Cyber Law", "Data Protection"]
+  },
+  {
+    title: "Foundations of Cybersecurity",
+    platform: "Coursera",
+    instructor: "Google",
+    duration: "",
+    completed: "June 2025",
+    credentialUrl: "https://drive.google.com/file/d/1kKXdRdJaP0BuRmeO2CsWAj0ZuTKMDBau/view?usp=drivesdk",
+    skills: ["Security Fundamentals", "SIEM", "Threat Landscape"]
+  },
+  {
+    title: "Play It Safe: Manage Security Risks",
+    platform: "Coursera",
+    instructor: "Google",
+    duration: "",
+    completed: "June 2025",
+    credentialUrl: "https://drive.google.com/file/d/12mWQc0fys5aYeC1xeWyw4g44BAya_47r/view?usp=drivesdk",
+    skills: ["Risk Management", "NIST", "Security Frameworks"]
+  },
+  {
+    title: "Connect and Protect: Networks and Network Security",
+    platform: "Coursera",
+    instructor: "Google",
+    duration: "",
+    completed: "July 2025",
+    credentialUrl: "https://drive.google.com/file/d/1j5KLD03gKHw0MksySW4TQtmd3rM1JuQq/view?usp=drivesdk",
+    skills: ["Network Security", "TCP/IP", "Firewalls"]
   }
 ];
 
-export const certificationStats = {
-  totalCertifications: "4",
-  totalLearningHours: "68.5+",
-  focusAreas: ["Ethical Hacking", "Linux", "Cisco Security", "Network Security"]
-};
+export const jobSimulations = [
+  {
+    title: "Cybersecurity Job Simulation",
+    platform: "Forage",
+    instructor: "Mastercard",
+    duration: "",
+    completed: "June 2026",
+    credentialUrl: "https://drive.google.com/file/d/1_P_L2gyW1eGvVTgdNOU-_MQ3_hPKGSlK/view?usp=drivesdk",
+    skills: ["Phishing Simulation", "Incident Analysis"]
+  },
+  {
+    title: "Cybersecurity Analyst Job Simulation",
+    platform: "Forage",
+    instructor: "TATA",
+    duration: "",
+    completed: "February 2026",
+    credentialUrl: "https://drive.google.com/file/d/1Gk0uFb0Q8mQeizgvgqCTAxrBOXpcH9Ti/view?usp=drivesdk",
+    skills: ["IAM", "Identity Strategy", "Platform Integration"]
+  },
+  {
+    title: "Cyber Job Simulation",
+    platform: "Forage",
+    instructor: "Deloitte",
+    duration: "",
+    completed: "December 2025",
+    credentialUrl: "https://drive.google.com/file/d/1NFh4GRUfsRIf8OZvEjAGfyBMaKHaEswt/view?usp=drivesdk",
+    skills: ["Cybersecurity Fundamentals"]
+  }
+];
+
+export const certAchievements = [
+  {
+    title: "Project Zero Day — 1st Prize",
+    issuer: "Sri Krishna College of Engineering and Technology",
+    date: "June 2026",
+    skills: ["Technical Event", "Cyber Security Track"]
+  },
+  {
+    title: "FIESTAA'26 – IT Project Presentation",
+    issuer: "KPR Institute of Engineering and Technology",
+    date: "February 2026",
+    skills: ["Participation", "Project Presentation"]
+  },
+  {
+    title: "Kurukshetra'25 – Underwater Robotics Prelims",
+    issuer: "CEG Tech Forum",
+    date: "January–February 2025",
+    skills: ["Robotics", "Participation"]
+  }
+];
 
 export const achievements = [
   "Shortlisted, IBM-Corizo Summer Internship Program",
   "AMD Developer Hackathon ACT II participant",
   "1st Prize, Zero Day event (SKCET)"
 ];
+
 
