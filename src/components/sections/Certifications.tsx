@@ -1,7 +1,13 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useRef } from "react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useMotionTemplate
+} from "framer-motion";
 import {
   cybersecurityCertifications,
   jobSimulations,
@@ -21,7 +27,7 @@ import {
   Building2
 } from "lucide-react";
 
-// Interactive Card Component with 3D Tilt and Mouse Spotlight Tracking
+// Ultra-Smooth Interactive Card with Zero React State Re-renders
 const InteractiveTiltCard = ({
   children,
   className = "",
@@ -32,16 +38,50 @@ const InteractiveTiltCard = ({
   glowColor?: "cyan" | "violet" | "amber";
 }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
 
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0, opacity: 0 });
+  // Raw tilt offsets (-0.5 to 0.5)
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
 
-  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 25 });
-  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 25 });
+  // Spotlight position MotionValues (px)
+  const spotX = useMotionValue(0);
+  const spotY = useMotionValue(0);
+  const spotOpacity = useMotionValue(0);
 
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["8deg", "-8deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-8deg", "8deg"]);
+  // Spring physics for butter-smooth tilt response
+  const springConfig = { stiffness: 120, damping: 18, mass: 0.4 };
+  const smoothX = useSpring(rawX, springConfig);
+  const smoothY = useSpring(rawY, springConfig);
+
+  const rotateX = useTransform(smoothY, [-0.5, 0.5], ["9deg", "-9deg"]);
+  const rotateY = useTransform(smoothX, [-0.5, 0.5], ["-9deg", "9deg"]);
+
+  // Spring for smooth opacity fade-in/out
+  const opacitySpring = useSpring(spotOpacity, { stiffness: 200, damping: 25 });
+
+  const glowBg =
+    glowColor === "amber"
+      ? "rgba(251, 191, 36, 0.22)"
+      : glowColor === "violet"
+      ? "rgba(124, 58, 237, 0.22)"
+      : "rgba(0, 229, 199, 0.22)";
+
+  // Dynamic template calculated purely on GPU/animation frame
+  const spotlightBackground = useMotionTemplate`radial-gradient(380px circle at ${spotX}px ${spotY}px, ${glowBg}, transparent 80%)`;
+
+  const borderColor =
+    glowColor === "amber"
+      ? "hover:border-amber-400/60 hover:shadow-[0_10px_30px_-10px_rgba(251,191,36,0.25)]"
+      : glowColor === "violet"
+      ? "hover:border-violet-400/60 hover:shadow-[0_10px_30px_-10px_rgba(124,58,237,0.25)]"
+      : "hover:border-cyan-400/60 hover:shadow-[0_10px_30px_-10px_rgba(0,229,199,0.25)]";
+
+  const scanlineColor =
+    glowColor === "amber"
+      ? "from-transparent via-amber-400/15 to-transparent"
+      : glowColor === "violet"
+      ? "from-transparent via-violet-400/15 to-transparent"
+      : "from-transparent via-cyan-400/15 to-transparent";
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
@@ -49,34 +89,19 @@ const InteractiveTiltCard = ({
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
 
-    const xPct = mouseX / rect.width - 0.5;
-    const yPct = mouseY / rect.height - 0.5;
+    rawX.set(mouseX / rect.width - 0.5);
+    rawY.set(mouseY / rect.height - 0.5);
 
-    x.set(xPct);
-    y.set(yPct);
-
-    setMousePos({ x: mouseX, y: mouseY, opacity: 1 });
+    spotX.set(mouseX);
+    spotY.set(mouseY);
+    spotOpacity.set(1);
   };
 
   const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-    setMousePos((prev) => ({ ...prev, opacity: 0 }));
+    rawX.set(0);
+    rawY.set(0);
+    spotOpacity.set(0);
   };
-
-  const glowBg =
-    glowColor === "amber"
-      ? "rgba(251, 191, 36, 0.18)"
-      : glowColor === "violet"
-      ? "rgba(124, 58, 237, 0.18)"
-      : "rgba(0, 229, 199, 0.18)";
-
-  const borderColor =
-    glowColor === "amber"
-      ? "hover:border-amber-400/60 hover:shadow-[0_0_25px_rgba(251,191,36,0.15)]"
-      : glowColor === "violet"
-      ? "hover:border-violet-400/60 hover:shadow-[0_0_25px_rgba(124,58,237,0.15)]"
-      : "hover:border-cyan-400/60 hover:shadow-[0_0_25px_rgba(0,229,199,0.15)]";
 
   return (
     <div className="[perspective:1000px] w-full h-full">
@@ -84,19 +109,31 @@ const InteractiveTiltCard = ({
         ref={ref}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className={`glass rounded-xl border border-card-border transition-all duration-300 relative group interactive ${borderColor} ${className}`}
+        whileHover={{ y: -6, scale: 1.012 }}
+        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+        style={{
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d",
+          willChange: "transform",
+        }}
+        className={`glass rounded-xl border border-card-border transition-colors duration-300 relative group interactive overflow-hidden ${borderColor} ${className}`}
       >
-        {/* Dynamic Mouse Spotlight Glow following cursor */}
-        <div
+        {/* GPU-Accelerated Dynamic Mouse Spotlight Glow */}
+        <motion.div
           className="pointer-events-none absolute -inset-px transition-opacity duration-300 rounded-xl z-0"
           style={{
-            opacity: mousePos.opacity,
-            background: `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, ${glowBg}, transparent 80%)`,
+            opacity: opacitySpring,
+            background: spotlightBackground,
           }}
         />
 
-        <div style={{ transform: "translateZ(12px)" }} className="relative z-10 flex flex-col h-full p-6 md:p-8">
+        {/* Hover Scanline Sweep Animation */}
+        <div
+          className={`pointer-events-none absolute inset-x-0 h-1/2 bg-gradient-to-b ${scanlineColor} -translate-y-full group-hover:translate-y-[200%] transition-transform duration-1000 ease-in-out z-0`}
+        />
+
+        <div style={{ transform: "translateZ(14px)" }} className="relative z-10 flex flex-col h-full p-6 md:p-8">
           {children}
         </div>
       </motion.div>
