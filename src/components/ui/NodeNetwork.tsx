@@ -55,11 +55,11 @@ function Particles({ count = 100 }) {
 
   return (
     <>
-      <pointLight ref={light} distance={50} intensity={12} color="#39ff6a" />
-      <pointLight distance={40} intensity={8} color="#4ade80" position={[-15, 10, -10]} />
+      <pointLight ref={light} distance={50} intensity={12} color="#a855f7" />
+      <pointLight distance={40} intensity={8} color="#7c3aed" position={[-15, 10, -10]} />
       <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
         <sphereGeometry args={[0.12, 16, 16]} />
-        <meshStandardMaterial color="#39ff6a" emissive="#4ade80" emissiveIntensity={0.6} roughness={0.2} metalness={0.9} />
+        <meshStandardMaterial color="#c4b5fd" emissive="#7c3aed" emissiveIntensity={0.6} roughness={0.2} metalness={0.9} />
       </instancedMesh>
     </>
   );

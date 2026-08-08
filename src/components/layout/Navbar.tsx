@@ -31,18 +31,18 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
         isScrolled
-          ? "py-3 bg-[#050706]/90 backdrop-blur-md border-b border-white/[0.09] shadow-lg shadow-black/80"
+          ? "py-3 bg-[#0a0810]/90 backdrop-blur-md border-b border-white/[0.08] shadow-lg shadow-black/90"
           : "py-5 bg-transparent border-b border-transparent"
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <a href="#home" className="flex items-center gap-2 group">
-          <div className="p-1.5 rounded bg-[#39ff6a]/10 border border-[#39ff6a]/30 group-hover:border-[#39ff6a] transition-colors">
-            <Shield size={18} className="text-[#39ff6a]" />
+          <div className="p-1.5 rounded bg-[#a855f7]/10 border border-[#a855f7]/30 group-hover:border-[#a855f7] transition-colors">
+            <Shield size={18} className="text-[#a855f7]" />
           </div>
           <span className="text-base font-mono font-bold tracking-wider text-white">
-            GPR<span className="text-[#39ff6a]">.SEC_OPS</span>
+            GPR<span className="text-[#a855f7]">.SEC_OPS</span>
           </span>
         </a>
 
@@ -52,19 +52,19 @@ export default function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className="text-xs font-mono font-semibold tracking-wider text-gray-300 hover:text-[#39ff6a] transition-colors relative py-1 group"
+              className="text-xs font-mono font-semibold tracking-wider text-gray-300 hover:text-[#c4b5fd] transition-colors relative py-1 group"
             >
               {link.name}
-              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#39ff6a] transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#a855f7] transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
         </nav>
 
-        {/* Green Pill CTA Button */}
+        {/* Electric Violet CTA Button */}
         <div className="hidden lg:flex items-center gap-4">
           <a
             href="#contact"
-            className="px-5 py-2 rounded-full bg-[#39ff6a] text-[#050706] font-mono text-xs font-bold tracking-wider hover:scale-105 hover:shadow-[0_0_20px_rgba(57,255,106,0.5)] transition-all flex items-center gap-1.5"
+            className="px-5 py-2 rounded-full btn-violet-gradient font-mono text-xs font-bold tracking-wider flex items-center gap-1.5"
           >
             <span>GET IN TOUCH</span>
             <ArrowUpRight size={14} />
@@ -73,7 +73,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="xl:hidden p-2 rounded border border-white/10 text-gray-300 hover:text-[#39ff6a] hover:border-[#39ff6a]/40 transition-colors"
+          className="xl:hidden p-2 rounded border border-white/10 text-gray-300 hover:text-[#a855f7] hover:border-[#a855f7]/40 transition-colors"
           onClick={() => setMobileMenuOpen(true)}
           aria-label="Open Menu"
         >
@@ -89,14 +89,14 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[101] bg-[#050706]/95 backdrop-blur-xl flex flex-col justify-between p-8"
+            className="fixed inset-0 z-[101] bg-[#0a0810]/95 backdrop-blur-xl flex flex-col justify-between p-8"
           >
             <div className="flex items-center justify-between">
               <span className="text-base font-mono font-bold tracking-wider text-white">
-                GPR<span className="text-[#39ff6a]">.NAV</span>
+                GPR<span className="text-[#a855f7]">.NAV</span>
               </span>
               <button
-                className="p-2 rounded border border-white/10 text-gray-300 hover:text-[#39ff6a]"
+                className="p-2 rounded border border-white/10 text-gray-300 hover:text-[#a855f7]"
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close Menu"
               >
@@ -113,7 +113,7 @@ export default function Navbar() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-mono font-bold text-gray-200 hover:text-[#39ff6a] tracking-wider transition-colors"
+                  className="text-lg font-mono font-bold text-gray-200 hover:text-[#a855f7] tracking-wider transition-colors"
                 >
                   &gt; {link.name}
                 </motion.a>
@@ -123,7 +123,7 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full py-3 text-center rounded-full bg-[#39ff6a] text-[#050706] font-mono text-sm font-bold tracking-wider"
+              className="w-full py-3 text-center rounded-full btn-violet-gradient font-mono text-sm font-bold tracking-wider"
             >
               INITIALIZE CONTACT
             </a>

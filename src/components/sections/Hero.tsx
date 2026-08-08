@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Terminal, FileText, ArrowRight } from "lucide-react";
+import { FileText, ArrowRight } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { SiLeetcode, SiTryhackme, SiHackthebox } from "react-icons/si";
 import CyberHeroCanvas from "../ui/CyberHeroCanvas";
@@ -25,14 +25,14 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative pt-28 pb-12 md:pt-36 md:pb-16 overflow-hidden bg-[#050706]">
+    <section id="home" className="relative pt-28 pb-12 md:pt-36 md:pb-16 overflow-hidden bg-[#0a0810]">
       <div className="container mx-auto px-6 relative z-10">
         
-        {/* Main Enterprise Container Frame with Vignette & Green Grid */}
-        <div className="relative rounded-2xl border border-white/[0.09] bg-[#080b09]/85 backdrop-blur-xl p-6 md:p-12 shadow-2xl shadow-black/90 overflow-hidden cyber-grid shadow-[inset_0_0_90px_rgba(0,0,0,0.85)]">
+        {/* Main Enterprise Container Frame with Vignette & Subtle Grid */}
+        <div className="relative rounded-2xl border border-white/[0.08] bg-[#0f0b18]/85 backdrop-blur-xl p-6 md:p-12 shadow-2xl shadow-black/90 overflow-hidden cyber-grid shadow-[inset_0_0_90px_rgba(0,0,0,0.85)]">
           
-          {/* Subtle Green Radial Glow Behind Hero Content */}
-          <div className="pointer-events-none absolute -top-40 -left-40 w-[500px] h-[500px] bg-[#39ff6a]/[0.06] rounded-full blur-[100px]"></div>
+          {/* Soft Radial Violet Glow Behind Hero Content */}
+          <div className="pointer-events-none absolute -top-40 -left-40 w-[550px] h-[550px] bg-[#a855f7]/[0.10] rounded-full blur-[110px]"></div>
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
             
@@ -44,9 +44,9 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#39ff6a]/30 bg-[#080b09] text-[#39ff6a] font-mono text-xs font-semibold tracking-wider mb-6 w-fit shadow-md"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#a855f7]/35 bg-[#0a0810] text-[#a855f7] font-mono text-xs font-semibold tracking-wider mb-6 w-fit shadow-md"
               >
-                <span className="w-2 h-2 rounded-full bg-[#39ff6a] animate-pulse"></span>
+                <span className="w-2 h-2 rounded-full bg-[#a855f7] animate-pulse"></span>
                 <span>SYSTEM_ONLINE // SECURE_NODE</span>
               </motion.div>
 
@@ -57,7 +57,7 @@ export default function Hero() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-mono font-extrabold tracking-tight text-white mb-4 leading-none"
               >
-                GURU PRASANNA R<span className="text-[#39ff6a]">.</span>
+                GURU PRASANNA R<span className="text-[#a855f7]">.</span>
               </motion.h1>
 
               {/* Dynamic Role Line */}
@@ -67,9 +67,9 @@ export default function Hero() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-lg md:text-xl font-mono font-semibold text-gray-300 mb-6 flex items-center gap-2 h-8"
               >
-                <span className="text-[#39ff6a]">&gt;</span>
+                <span className="text-[#a855f7]">&gt;</span>
                 <span>ROLE:</span>
-                <span className="text-[#39ff6a] font-bold tracking-wider">{roles[roleIndex]}</span>
+                <span className="text-[#c4b5fd] font-bold tracking-wider">{roles[roleIndex]}</span>
               </motion.div>
 
               {/* Subtext Paragraph */}
@@ -77,7 +77,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="text-gray-400 text-base md:text-lg max-w-xl mb-8 leading-relaxed font-sans"
+                className="text-[#9b8fa0] text-base md:text-lg max-w-xl mb-8 leading-relaxed font-sans"
               >
                 Cybersecurity student specializing in ethical hacking, vulnerability assessment, web exploitation, and secure system architecture. Building battle-tested security tools and analyzing real-world attack vectors.
               </motion.p>
@@ -89,21 +89,21 @@ export default function Hero() {
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="flex flex-wrap items-center gap-4"
               >
-                {/* Primary CTA (Solid Green, Black Text) */}
+                {/* Primary CTA (Subtle Violet Gradient Fill) */}
                 <a
                   href="#projects"
-                  className="px-7 py-3.5 rounded-lg bg-[#39ff6a] text-[#050706] font-mono text-sm font-bold tracking-wider hover:scale-105 hover:shadow-[0_0_24px_rgba(57,255,106,0.5)] transition-all flex items-center gap-2"
+                  className="px-7 py-3.5 rounded-lg btn-violet-gradient text-white font-mono text-sm font-bold tracking-wider flex items-center gap-2"
                 >
                   <span>EXPLORE PROJECTS</span>
                   <ArrowRight size={16} />
                 </a>
 
-                {/* Secondary CTA (Black Background, White Text) */}
+                {/* Secondary CTA (Black Background, White Border & Soft Lavender Text) */}
                 <a
                   href="https://drive.google.com/file/d/1Z5LX9f_gJpq_Vh9YFfoRbZmMu1WF85Fq/view?usp=drivesdk"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3.5 rounded-lg border border-white/15 bg-black/60 text-white font-mono text-sm font-semibold tracking-wider hover:border-[#39ff6a] hover:text-[#39ff6a] transition-all flex items-center gap-2"
+                  className="px-6 py-3.5 rounded-lg border border-white/15 bg-black/60 text-white font-mono text-sm font-semibold tracking-wider hover:border-[#a855f7] hover:text-[#c4b5fd] transition-all flex items-center gap-2"
                 >
                   <FileText size={16} />
                   <span>VIEW RESUME</span>
@@ -115,7 +115,7 @@ export default function Hero() {
                     href="https://github.com/rgp040906"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-white hover:border-[#39ff6a]/50 transition-all"
+                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-white hover:border-[#a855f7]/50 transition-all"
                     title="GitHub"
                   >
                     <FaGithub size={18} />
@@ -133,7 +133,7 @@ export default function Hero() {
                     href="https://tryhackme.com/p/XyPhor"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-[#39ff6a] hover:border-[#39ff6a]/50 transition-all"
+                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-[#c4b5fd] hover:border-[#a855f7]/50 transition-all"
                     title="TryHackMe"
                   >
                     <SiTryhackme size={18} />

@@ -21,38 +21,38 @@ interface SkillCategoryProps {
 
 const categoryStyles = [
   {
-    bg: "bg-[#39ff6a]/15",
-    text: "text-[#39ff6a]",
-    border: "border-[#39ff6a]/30",
-    glow: "rgba(57, 255, 106, 0.25)",
+    bg: "bg-[#a855f7]/15",
+    text: "text-[#a855f7]",
+    border: "border-[#a855f7]/30",
+    glow: "rgba(168, 85, 247, 0.28)",
     iconHoverAnim: "group-hover:scale-110 group-hover:-rotate-6",
   },
   {
-    bg: "bg-[#34d399]/15",
-    text: "text-[#34d399]",
-    border: "border-[#34d399]/30",
-    glow: "rgba(52, 211, 153, 0.25)",
+    bg: "bg-[#c4b5fd]/15",
+    text: "text-[#c4b5fd]",
+    border: "border-[#c4b5fd]/30",
+    glow: "rgba(196, 181, 253, 0.25)",
     iconHoverAnim: "group-hover:scale-110 group-hover:rotate-12",
   },
   {
-    bg: "bg-[#00ff88]/15",
-    text: "text-[#00ff88]",
-    border: "border-[#00ff88]/30",
-    glow: "rgba(0, 255, 136, 0.25)",
+    bg: "bg-[#7c3aed]/15",
+    text: "text-[#c4b5fd]",
+    border: "border-[#7c3aed]/35",
+    glow: "rgba(124, 58, 237, 0.28)",
     iconHoverAnim: "group-hover:scale-115 group-hover:-translate-y-1",
   },
   {
-    bg: "bg-[#22c55e]/15",
-    text: "text-[#22c55e]",
-    border: "border-[#22c55e]/30",
-    glow: "rgba(34, 197, 94, 0.25)",
+    bg: "bg-[#8b5cf6]/15",
+    text: "text-[#a855f7]",
+    border: "border-[#8b5cf6]/30",
+    glow: "rgba(139, 92, 246, 0.25)",
     iconHoverAnim: "group-hover:scale-110 group-hover:translate-y-0.5",
   },
   {
-    bg: "bg-[#10b981]/15",
-    text: "text-[#10b981]",
-    border: "border-[#10b981]/30",
-    glow: "rgba(16, 185, 129, 0.25)",
+    bg: "bg-[#d8b4fe]/15",
+    text: "text-[#d8b4fe]",
+    border: "border-[#d8b4fe]/30",
+    glow: "rgba(216, 180, 254, 0.25)",
     iconHoverAnim: "group-hover:scale-110 group-hover:rotate-6",
   },
 ];
@@ -113,10 +113,10 @@ const SkillCard = ({ title, items, icon: Icon, delay, badgeStyle }: SkillCategor
           rotateY,
           transformStyle: "preserve-3d",
         }}
-        className="relative rounded-xl border border-white/[0.08] border-t-white/20 bg-[#080b09]/85 p-6 md:p-7 h-full flex flex-col justify-between overflow-hidden group hover:border-[#39ff6a]/50 hover:shadow-[0_12px_32px_-8px_rgba(57,255,106,0.22)] transition-all duration-300 shadow-xl"
+        className="relative rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/85 p-6 md:p-7 h-full flex flex-col justify-between overflow-hidden group hover:border-[#a855f7]/50 hover:shadow-[0_12px_32px_-8px_rgba(168,85,247,0.25)] transition-all duration-300 shadow-xl"
       >
         {/* Top Highlight Inner Border Glow */}
-        <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:via-[#39ff6a]/60 transition-colors" />
+        <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:via-[#a855f7]/60 transition-colors" />
 
         {/* Dynamic Spotlight Glow */}
         <motion.div
@@ -135,17 +135,17 @@ const SkillCard = ({ title, items, icon: Icon, delay, badgeStyle }: SkillCategor
                 <Icon size={24} />
               </div>
               <div>
-                <h3 className="text-lg md:text-xl font-mono font-bold text-white tracking-wider uppercase group-hover:text-[#39ff6a] transition-colors">
+                <h3 className="text-lg md:text-xl font-mono font-bold text-white tracking-wider uppercase group-hover:text-[#c4b5fd] transition-colors">
                   {title}
                 </h3>
-                <span className="font-mono text-[10px] text-gray-500 uppercase tracking-widest">
+                <span className="font-mono text-[10px] text-[#9b8fa0] uppercase tracking-widest">
                   {items.length} MODULES
                 </span>
               </div>
             </div>
             
             {/* Corner Terminal Dot */}
-            <div className="w-2 h-2 rounded-full bg-[#39ff6a]/30 group-hover:bg-[#39ff6a] group-hover:shadow-[0_0_8px_#39ff6a] transition-all" />
+            <div className="w-2 h-2 rounded-full bg-[#a855f7]/30 group-hover:bg-[#a855f7] group-hover:shadow-[0_0_8px_#a855f7] transition-all" />
           </div>
 
           {/* Interactive Skill Tags Grid */}
@@ -157,9 +157,9 @@ const SkillCard = ({ title, items, icon: Icon, delay, badgeStyle }: SkillCategor
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.2, delay: delay + idx * 0.02 }}
-                className="px-3 py-1.5 text-xs font-mono bg-black/60 border border-white/[0.08] rounded-md text-gray-300 cursor-default hover:bg-[#39ff6a]/15 hover:border-[#39ff6a]/50 hover:text-white hover:scale-[1.04] hover:shadow-[0_0_12px_rgba(57,255,106,0.2)] transition-all duration-150 flex items-center gap-1.5 group/tag"
+                className="px-3 py-1.5 text-xs font-mono bg-black/60 border border-white/[0.08] rounded-md text-gray-300 cursor-default hover:bg-[#a855f7]/15 hover:border-[#a855f7]/50 hover:text-white hover:scale-[1.04] hover:shadow-[0_0_12px_rgba(168,85,247,0.25)] transition-all duration-150 flex items-center gap-1.5 group/tag"
               >
-                <span className="w-1 h-1 rounded-full bg-gray-500 group-hover/tag:bg-[#39ff6a] transition-colors" />
+                <span className="w-1 h-1 rounded-full bg-gray-500 group-hover/tag:bg-[#a855f7] transition-colors" />
                 <span>{item}</span>
               </motion.span>
             ))}
@@ -167,9 +167,9 @@ const SkillCard = ({ title, items, icon: Icon, delay, badgeStyle }: SkillCategor
         </div>
 
         {/* Bottom Card Telemetry Bar */}
-        <div className="mt-6 pt-4 border-t border-white/[0.07] flex items-center justify-between text-[11px] font-mono text-gray-500 relative z-10" style={{ transform: "translateZ(10px)" }}>
+        <div className="mt-6 pt-4 border-t border-white/[0.07] flex items-center justify-between text-[11px] font-mono text-[#9b8fa0] relative z-10" style={{ transform: "translateZ(10px)" }}>
           <span className="group-hover:text-gray-300 transition-colors">&gt; STATUS: VERIFIED</span>
-          <span className="text-[#39ff6a]/70 group-hover:text-[#39ff6a] transition-colors">100% READY</span>
+          <span className="text-[#c4b5fd]/80 group-hover:text-[#c4b5fd] transition-colors">100% READY</span>
         </div>
       </motion.div>
     </motion.div>
@@ -186,9 +186,9 @@ export default function Skills() {
   ];
 
   return (
-    <section id="skills" className="py-24 relative z-10 overflow-hidden bg-[#050706]">
+    <section id="skills" className="py-24 relative z-10 overflow-hidden bg-[#0a0810]">
       {/* Background Animated Scanline Overlay */}
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(57,255,106,0.02)_50%)] bg-[length:100%_6px] z-0" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(168,85,247,0.02)_50%)] bg-[length:100%_6px] z-0" />
 
       <div className="container mx-auto px-6 relative z-10">
         
@@ -199,11 +199,11 @@ export default function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2.5 font-mono text-xs text-[#39ff6a] uppercase tracking-widest mb-3 px-3 py-1 rounded-full bg-[#39ff6a]/10 border border-[#39ff6a]/25 shadow-[0_0_12px_rgba(57,255,106,0.15)]"
+            className="inline-flex items-center gap-2.5 font-mono text-xs text-[#a855f7] uppercase tracking-widest mb-3 px-3 py-1 rounded-full bg-[#a855f7]/10 border border-[#a855f7]/25 shadow-[0_0_12px_rgba(168,85,247,0.15)]"
           >
             <div className="relative flex items-center justify-center">
-              <span className="w-2 h-2 rounded-full bg-[#39ff6a] animate-ping absolute" />
-              <span className="w-2 h-2 rounded-full bg-[#39ff6a] relative" />
+              <span className="w-2 h-2 rounded-full bg-[#a855f7] animate-ping absolute" />
+              <span className="w-2 h-2 rounded-full bg-[#a855f7] relative" />
             </div>
             <Terminal size={14} />
             <span>// CAPABILITIES_&_ARSENAL</span>
@@ -217,9 +217,9 @@ export default function Skills() {
             className="text-3xl sm:text-4xl md:text-5xl font-mono font-extrabold text-white tracking-tight flex items-center flex-wrap"
           >
             <span>TECHNICAL ARSENAL</span>
-            <span className="text-[#39ff6a]">.</span>
+            <span className="text-[#a855f7]">.</span>
             {/* Terminal Blinking Cursor Prompt */}
-            <span className="inline-block w-3 h-8 md:h-10 bg-[#39ff6a] ml-3 animate-pulse align-middle rounded-sm shadow-[0_0_10px_#39ff6a]" />
+            <span className="inline-block w-3 h-8 md:h-10 bg-[#a855f7] ml-3 animate-pulse align-middle rounded-sm shadow-[0_0_10px_#a855f7]" />
           </motion.h2>
 
           <motion.div
@@ -227,7 +227,7 @@ export default function Skills() {
             whileInView={{ width: "4.5rem" }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="h-1 bg-[#39ff6a] mt-4 rounded-full shadow-[0_0_12px_#39ff6a]"
+            className="h-1 bg-[#a855f7] mt-4 rounded-full shadow-[0_0_12px_#a855f7]"
           />
         </div>
 

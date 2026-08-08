@@ -85,7 +85,7 @@ export default function CustomCursor() {
     <>
       {/* 1. Precision Center Core Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-[#4ade80] shadow-[0_0_8px_#4ade80] pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-[#a855f7] shadow-[0_0_10px_#a855f7] pointer-events-none z-[9999]"
         style={{
           x: mouseX,
           y: mouseY,
@@ -108,14 +108,14 @@ export default function CustomCursor() {
           translateY: "-50%",
         }}
       >
-        {/* Rotating Outer Radar Dashed Ring (Signature Touch) */}
+        {/* Rotating Outer Radar Dashed Ring */}
         <motion.div
           className={`absolute inset-0 rounded-full border border-dashed transition-all duration-300 ${
             isHoveringInteractive
-              ? "border-[#4ade80] bg-[#4ade80]/15 scale-125"
+              ? "border-[#a855f7] bg-[#a855f7]/15 scale-125"
               : isHoveringCard
-              ? "border-[#4ade80]/70 bg-[#4ade80]/5 scale-110"
-              : "border-[#4ade80]/40 bg-transparent"
+              ? "border-[#a855f7]/70 bg-[#a855f7]/5 scale-110"
+              : "border-[#a855f7]/40 bg-transparent"
           }`}
           animate={{ rotate: 360 }}
           transition={{
@@ -128,15 +128,15 @@ export default function CustomCursor() {
         {/* Crosshair Cardinal Tick Marks (on card hover) */}
         {isHoveringCard && (
           <div className="absolute inset-0 pointer-events-none">
-            <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 w-[1px] h-1.5 bg-[#4ade80]" />
-            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1 w-[1px] h-1.5 bg-[#4ade80]" />
-            <span className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-1.5 h-[1px] bg-[#4ade80]" />
-            <span className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 w-1.5 h-[1px] bg-[#4ade80]" />
+            <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 w-[1px] h-1.5 bg-[#a855f7]" />
+            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1 w-[1px] h-1.5 bg-[#a855f7]" />
+            <span className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-1.5 h-[1px] bg-[#a855f7]" />
+            <span className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 w-1.5 h-[1px] bg-[#a855f7]" />
           </div>
         )}
       </motion.div>
 
-      {/* 3. Click Scan Ripple Effect */}
+      {/* 3. Click Scan Pulse Effect */}
       {clickRipples.map((ripple) => (
         <motion.div
           key={ripple.id}
@@ -146,7 +146,7 @@ export default function CustomCursor() {
           onAnimationComplete={() => {
             setClickRipples((prev) => prev.filter((r) => r.id !== ripple.id));
           }}
-          className="fixed top-0 left-0 w-8 h-8 rounded-full border border-[#4ade80] shadow-[0_0_12px_#4ade80] pointer-events-none z-[9997]"
+          className="fixed top-0 left-0 w-8 h-8 rounded-full border border-[#a855f7] shadow-[0_0_14px_#a855f7] pointer-events-none z-[9997]"
           style={{
             left: ripple.x,
             top: ripple.y,

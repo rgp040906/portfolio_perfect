@@ -17,9 +17,9 @@ const brands = [
 
 export default function TrustedRow() {
   return (
-    <div className="w-full border-y border-white/[0.08] bg-[#050706] py-8 my-12">
+    <div className="w-full border-y border-white/[0.08] bg-[#0a0810] py-8 my-12">
       <div className="container mx-auto px-6">
-        <p className="text-center font-mono text-xs uppercase tracking-widest text-gray-400 mb-6">
+        <p className="text-center font-mono text-xs uppercase tracking-widest text-[#9b8fa0] mb-6">
           TRAINED & CERTIFIED ACROSS ENTERPRISE SECURITY PLATFORMS
         </p>
 
@@ -31,9 +31,9 @@ export default function TrustedRow() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="group flex flex-col items-center justify-center p-3 rounded-lg border border-transparent hover:border-[#39ff6a]/30 hover:bg-[#39ff6a]/5 transition-all cursor-default"
+              className="group flex flex-col items-center justify-center p-3 rounded-lg border border-transparent hover:border-[#a855f7]/35 hover:bg-[#a855f7]/5 transition-all cursor-default"
             >
-              <span className="font-mono font-bold text-sm md:text-base text-gray-400 group-hover:text-[#39ff6a] transition-colors tracking-wider">
+              <span className="font-mono font-bold text-sm md:text-base text-gray-400 group-hover:text-[#c4b5fd] transition-colors tracking-wider">
                 {brand.name}
               </span>
               <span className="font-mono text-[10px] text-gray-500 group-hover:text-gray-300 transition-colors mt-0.5">

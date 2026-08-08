@@ -31,7 +31,7 @@ const platforms = [
   },
   {
     name: "TryHackMe",
-    icon: <SiTryhackme size={32} className="text-[#39ff6a]" />,
+    icon: <SiTryhackme size={32} className="text-[#c4b5fd]" />,
     username: "XyPhor",
     link: "https://tryhackme.com/p/XyPhor",
     description: "Hands-on cyber labs, privilege escalation, web exploitation, network enumeration.",
@@ -55,7 +55,7 @@ const platforms = [
 
 export default function Platforms() {
   return (
-    <section id="platforms" className="py-20 relative z-10 bg-[#050706]">
+    <section id="platforms" className="py-20 relative z-10 bg-[#0a0810]">
       <div className="container mx-auto px-6">
         
         {/* Section Header */}
@@ -65,14 +65,14 @@ export default function Platforms() {
           viewport={{ once: true }}
           className="mb-14"
         >
-          <div className="inline-flex items-center gap-2 font-mono text-xs text-[#39ff6a] uppercase tracking-widest mb-2">
+          <div className="inline-flex items-center gap-2 font-mono text-xs text-[#a855f7] uppercase tracking-widest mb-2">
             <Terminal size={14} />
             <span>// ONLINE_SYSTEMS_&_BENCHMARKS</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-mono font-extrabold text-white tracking-tight">
-            PLATFORMS & PROFILES<span className="text-[#39ff6a]">.</span>
+            PLATFORMS & PROFILES<span className="text-[#a855f7]">.</span>
           </h2>
-          <div className="w-16 h-1 bg-[#39ff6a] mt-3"></div>
+          <div className="w-16 h-1 bg-[#a855f7] mt-3"></div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -83,23 +83,23 @@ export default function Platforms() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="rounded-xl border border-white/[0.08] bg-[#080b09]/85 p-6 flex flex-col justify-between card-hover-lift group"
+              className="rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/85 p-6 flex flex-col justify-between card-hover-lift group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <div className="p-3 bg-black/50 rounded-lg border border-white/10 group-hover:scale-110 transition-transform">
                     {platform.icon}
                   </div>
-                  <span className="font-mono text-xs text-[#39ff6a] font-bold">
+                  <span className="font-mono text-xs text-[#c4b5fd] font-bold">
                     {platform.username}
                   </span>
                 </div>
 
-                <h3 className="text-xl font-mono font-bold text-white mb-2 group-hover:text-[#39ff6a] transition-colors">
+                <h3 className="text-xl font-mono font-bold text-white mb-2 group-hover:text-[#c4b5fd] transition-colors">
                   {platform.name}
                 </h3>
 
-                <p className="text-gray-400 font-sans text-xs leading-relaxed mb-6">
+                <p className="text-[#9b8fa0] font-sans text-xs leading-relaxed mb-6">
                   {platform.description}
                 </p>
 
@@ -117,7 +117,7 @@ export default function Platforms() {
                 href={platform.link}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full py-2.5 rounded-lg bg-black/50 border border-white/10 group-hover:border-[#39ff6a] group-hover:bg-[#39ff6a] text-white group-hover:text-[#050706] font-mono text-xs font-bold flex items-center justify-center gap-1.5 transition-all mt-auto"
+                className="w-full py-2.5 rounded-lg bg-black/50 border border-white/10 group-hover:border-[#a855f7] group-hover:btn-violet-gradient text-white font-mono text-xs font-bold flex items-center justify-center gap-1.5 transition-all mt-auto"
               >
                 <span>VIEW PROFILE</span>
                 <ArrowUpRight size={14} />

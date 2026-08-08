@@ -52,7 +52,7 @@ export default function BootSequence({ onComplete }: { onComplete: () => void })
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-[99999] bg-[#050706] flex flex-col justify-center px-8 sm:px-24 font-mono text-[#39ff6a] text-sm sm:text-lg"
+        className="fixed inset-0 z-[99999] bg-[#0a0810] flex flex-col justify-center px-8 sm:px-24 font-mono text-[#a855f7] text-sm sm:text-lg"
         initial={{ opacity: 1 }}
         exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -77,11 +77,11 @@ export default function BootSequence({ onComplete }: { onComplete: () => void })
             <motion.div
               animate={{ opacity: [1, 0] }}
               transition={{ repeat: Infinity, duration: 0.8 }}
-              className="w-3 h-5 bg-[#39ff6a] mt-2 shadow-[0_0_10px_#39ff6a]"
+              className="w-3 h-5 bg-[#a855f7] mt-2 shadow-[0_0_10px_#a855f7]"
             />
           )}
         </div>
-        <div className="absolute bottom-8 left-8 sm:left-24 text-gray-500 text-xs">
+        <div className="absolute bottom-8 left-8 sm:left-24 text-[#9b8fa0] text-xs">
           Click anywhere to skip
         </div>
       </motion.div>

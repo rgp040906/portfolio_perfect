@@ -27,14 +27,14 @@ export default function Home() {
       <Platforms />
       <Contact />
       
-      <footer className="py-10 text-center border-t border-white/[0.08] bg-[#050706] mt-16 font-mono text-xs text-gray-400">
+      <footer className="py-10 text-center border-t border-white/[0.08] bg-[#0a0810] mt-16 font-mono text-xs text-[#9b8fa0]">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-white font-bold tracking-wider">
             <span>GPR</span>
-            <span className="text-[#39ff6a]">// SEC_OPS</span>
+            <span className="text-[#a855f7]">// SEC_OPS</span>
           </div>
           <p>© {new Date().getFullYear()} Guru Prasanna R. All Rights Reserved.</p>
-          <p className="text-[#39ff6a]">STATUS: 100% OPERATIONAL</p>
+          <p className="text-[#c4b5fd]">STATUS: 100% OPERATIONAL</p>
         </div>
       </footer>
     </>

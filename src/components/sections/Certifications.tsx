@@ -48,7 +48,7 @@ const InteractiveTiltCard = ({
   const rotateY = useTransform(smoothX, [-0.5, 0.5], ["-7deg", "7deg"]);
   const opacitySpring = useSpring(spotOpacity, { stiffness: 200, damping: 25 });
 
-  const spotlightBackground = useMotionTemplate`radial-gradient(380px circle at ${spotX}px ${spotY}px, rgba(57, 255, 106, 0.16), transparent 80%)`;
+  const spotlightBackground = useMotionTemplate`radial-gradient(380px circle at ${spotX}px ${spotY}px, rgba(168, 85, 247, 0.18), transparent 80%)`;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
@@ -81,7 +81,7 @@ const InteractiveTiltCard = ({
           rotateY,
           transformStyle: "preserve-3d",
         }}
-        className={`rounded-xl border border-white/[0.08] bg-[#080b09]/85 transition-colors duration-300 relative group overflow-hidden hover:border-[#39ff6a]/40 hover:shadow-[0_10px_30px_-10px_rgba(57,255,106,0.15)] ${className}`}
+        className={`rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/85 transition-colors duration-300 relative group overflow-hidden hover:border-[#a855f7]/45 hover:shadow-[0_10px_30px_-10px_rgba(168,85,247,0.2)] ${className}`}
       >
         {/* Dynamic Spotlight Glow */}
         <motion.div
@@ -102,7 +102,7 @@ const InteractiveTiltCard = ({
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="py-20 relative z-10 bg-[#050706]">
+    <section id="certifications" className="py-20 relative z-10 bg-[#0a0810]">
       <div className="container mx-auto px-6">
         
         {/* Section Header */}
@@ -112,22 +112,22 @@ export default function Certifications() {
           viewport={{ once: true }}
           className="mb-14"
         >
-          <div className="inline-flex items-center gap-2 font-mono text-xs text-[#39ff6a] uppercase tracking-widest mb-2">
+          <div className="inline-flex items-center gap-2 font-mono text-xs text-[#a855f7] uppercase tracking-widest mb-2">
             <Terminal size={14} />
             <span>// CREDENTIALS_&_VERIFICATION</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-mono font-extrabold text-white tracking-tight">
-            PROFESSIONAL CERTIFICATIONS<span className="text-[#39ff6a]">.</span>
+            PROFESSIONAL CERTIFICATIONS<span className="text-[#a855f7]">.</span>
           </h2>
-          <div className="w-16 h-1 bg-[#39ff6a] mt-3 mb-4"></div>
-          <p className="text-gray-400 max-w-3xl font-sans text-base">
+          <div className="w-16 h-1 bg-[#a855f7] mt-3 mb-4"></div>
+          <p className="text-[#9b8fa0] max-w-3xl font-sans text-base">
             Verified industry training in Ethical Hacking, Penetration Testing, Cisco Security, Red Hat Linux, and Risk Management.
           </p>
         </motion.div>
 
         {/* --- SUB-SECTION 1: CYBERSECURITY & NETWORKING CERTIFICATIONS --- */}
         <div className="mb-16">
-          <div className="flex items-center gap-3 mb-8 text-[#39ff6a]">
+          <div className="flex items-center gap-3 mb-8 text-[#a855f7]">
             <Award size={24} />
             <h3 className="text-lg md:text-xl font-mono font-bold uppercase text-white tracking-wider">
               CYBERSECURITY & NETWORKING CREDENTIALS
@@ -147,36 +147,36 @@ export default function Certifications() {
                 <InteractiveTiltCard>
                   {/* Badge Row */}
                   <div className="flex justify-between items-start mb-4">
-                    <div className="p-3 bg-black/50 rounded-lg border border-white/10 text-[#39ff6a] group-hover:scale-110 transition-transform">
+                    <div className="p-3 bg-black/50 rounded-lg border border-white/10 text-[#a855f7] group-hover:scale-110 transition-transform">
                       <Award size={24} />
                     </div>
-                    <span className="px-3 py-1 bg-[#39ff6a]/10 border border-[#39ff6a]/30 text-[#39ff6a] text-xs font-mono rounded-full font-bold">
+                    <span className="px-3 py-1 bg-[#a855f7]/10 border border-[#a855f7]/30 text-[#c4b5fd] text-xs font-mono rounded-full font-bold">
                       {cert.platform}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h4 className="text-lg font-mono font-bold text-white mb-3 group-hover:text-[#39ff6a] transition-colors leading-snug">
+                  <h4 className="text-lg font-mono font-bold text-white mb-3 group-hover:text-[#c4b5fd] transition-colors leading-snug">
                     {cert.title}
                   </h4>
 
                   {/* Details */}
-                  <div className="space-y-2 mb-5 text-xs font-mono text-gray-400">
+                  <div className="space-y-2 mb-5 text-xs font-mono text-[#9b8fa0]">
                     {cert.instructor && (
                       <div className="flex items-center gap-2">
-                        <User size={14} className="text-[#39ff6a]" />
+                        <User size={14} className="text-[#a855f7]" />
                         <span>Issuer/Instructor: <strong className="text-gray-200">{cert.instructor}</strong></span>
                       </div>
                     )}
                     <div className="flex items-center gap-3 flex-wrap pt-1">
                       {cert.duration && (
                         <div className="flex items-center gap-1.5 bg-black/50 px-2.5 py-1 rounded border border-white/10">
-                          <Clock size={13} className="text-[#39ff6a]" />
+                          <Clock size={13} className="text-[#a855f7]" />
                           <span>{cert.duration}</span>
                         </div>
                       )}
                       <div className="flex items-center gap-1.5 bg-black/50 px-2.5 py-1 rounded border border-white/10">
-                        <Calendar size={13} className="text-[#39ff6a]" />
+                        <Calendar size={13} className="text-[#a855f7]" />
                         <span>Completed: {cert.completed}</span>
                       </div>
                     </div>
@@ -199,7 +199,7 @@ export default function Certifications() {
                     href={cert.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-black/50 hover:bg-[#39ff6a] border border-white/10 hover:border-[#39ff6a] text-[#39ff6a] hover:text-[#050706] rounded-lg font-mono text-xs font-bold transition-all duration-300 group/btn"
+                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-black/50 hover:bg-[#a855f7] border border-white/10 hover:border-[#a855f7] text-[#c4b5fd] hover:text-white rounded-lg font-mono text-xs font-bold transition-all duration-300 group/btn"
                   >
                     <span>VERIFY CREDENTIAL</span>
                     <ExternalLink size={14} />
@@ -212,7 +212,7 @@ export default function Certifications() {
 
         {/* --- SUB-SECTION 2: INDUSTRY JOB SIMULATIONS --- */}
         <div className="mb-16">
-          <div className="flex items-center gap-3 mb-8 text-[#39ff6a]">
+          <div className="flex items-center gap-3 mb-8 text-[#a855f7]">
             <Briefcase size={24} />
             <h3 className="text-lg md:text-xl font-mono font-bold uppercase text-white tracking-wider">
               INDUSTRY JOB SIMULATIONS
@@ -231,7 +231,7 @@ export default function Certifications() {
               >
                 <InteractiveTiltCard>
                   <div className="flex justify-between items-start mb-4">
-                    <div className="p-3 bg-black/50 rounded-lg border border-white/10 text-[#39ff6a]">
+                    <div className="p-3 bg-black/50 rounded-lg border border-white/10 text-[#a855f7]">
                       <Briefcase size={24} />
                     </div>
                     <span className="px-3 py-1 bg-white/5 border border-white/15 text-gray-300 text-xs font-mono rounded-full font-bold">
@@ -239,13 +239,13 @@ export default function Certifications() {
                     </span>
                   </div>
 
-                  <h4 className="text-base font-mono font-bold text-white mb-2 group-hover:text-[#39ff6a] transition-colors leading-snug">
+                  <h4 className="text-base font-mono font-bold text-white mb-2 group-hover:text-[#c4b5fd] transition-colors leading-snug">
                     {sim.title}
                   </h4>
 
-                  <div className="space-y-1.5 mb-5 text-xs font-mono text-gray-400">
+                  <div className="space-y-1.5 mb-5 text-xs font-mono text-[#9b8fa0]">
                     <div className="flex items-center gap-2">
-                      <Building2 size={14} className="text-[#39ff6a]" />
+                      <Building2 size={14} className="text-[#a855f7]" />
                       <span>Company: <strong className="text-gray-200">{sim.instructor}</strong></span>
                     </div>
                     <div className="text-[11px] text-gray-500">Completed: {sim.completed}</div>
@@ -263,7 +263,7 @@ export default function Certifications() {
                     href={sim.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-black/50 hover:bg-[#39ff6a] border border-white/10 hover:border-[#39ff6a] text-[#39ff6a] hover:text-[#050706] rounded-lg font-mono text-xs font-bold transition-all duration-300"
+                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-black/50 hover:bg-[#a855f7] border border-white/10 hover:border-[#a855f7] text-[#c4b5fd] hover:text-white rounded-lg font-mono text-xs font-bold transition-all duration-300"
                   >
                     <span>VIEW CERTIFICATE</span>
                     <ExternalLink size={14} />
@@ -276,7 +276,7 @@ export default function Certifications() {
 
         {/* --- SUB-SECTION 3: ACHIEVEMENTS & RECOGNITION --- */}
         <div>
-          <div className="flex items-center gap-3 mb-8 text-[#39ff6a]">
+          <div className="flex items-center gap-3 mb-8 text-[#a855f7]">
             <Trophy size={24} />
             <h3 className="text-lg md:text-xl font-mono font-bold uppercase text-white tracking-wider">
               ACHIEVEMENTS & AWARDS
@@ -303,11 +303,11 @@ export default function Certifications() {
                     </span>
                   </div>
 
-                  <h4 className="text-base font-mono font-bold text-white mb-2 group-hover:text-[#39ff6a] transition-colors leading-snug">
+                  <h4 className="text-base font-mono font-bold text-white mb-2 group-hover:text-[#c4b5fd] transition-colors leading-snug">
                     {achieve.title}
                   </h4>
 
-                  <div className="space-y-1.5 mb-5 text-xs font-mono text-gray-400">
+                  <div className="space-y-1.5 mb-5 text-xs font-mono text-[#9b8fa0]">
                     <div>Issuer: <strong className="text-gray-200">{achieve.issuer}</strong></div>
                     <div className="text-[11px] text-gray-500">Date: {achieve.date}</div>
                   </div>
