@@ -3,6 +3,7 @@
 import { useState } from "react";
 import SmoothScrolling from "./SmoothScrolling";
 import CustomCursor from "./CustomCursor";
+import CursorGlow from "../ui/CursorGlow";
 import Navbar from "./Navbar";
 import BootSequence from "./BootSequence";
 import { AnimatePresence, motion } from "framer-motion";
@@ -13,6 +14,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   return (
     <>
       <CustomCursor />
+      <CursorGlow />
       
       {!bootComplete && <BootSequence onComplete={() => setBootComplete(true)} />}
 

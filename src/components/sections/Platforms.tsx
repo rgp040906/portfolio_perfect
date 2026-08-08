@@ -1,131 +1,131 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import { ArrowUpRight, Terminal } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import { SiLeetcode, SiTryhackme, SiHackthebox } from "react-icons/si";
 
 const platforms = [
   {
     name: "GitHub",
-    icon: <FaGithub size={36} className="text-foreground" />,
+    icon: <FaGithub size={32} className="text-white" />,
     username: "Rgp040906",
     link: "https://github.com/Rgp040906",
-    description: "Open-source projects, backend development, cybersecurity tools, and learning repositories.",
-    stats: [],
-    borderColor: "hover:border-foreground/50",
-    buttonColor: "bg-foreground text-background hover:bg-foreground/80",
+    description: "Open-source tools, backend services, security scripts, and learning repositories.",
+    stats: [
+      { label: "Repos", value: "Public" },
+      { label: "Focus", value: "Security & Dev" },
+    ],
   },
   {
     name: "LeetCode",
-    icon: <SiLeetcode size={36} className="text-[#FFA116]" />,
+    icon: <SiLeetcode size={32} className="text-[#FFA116]" />,
     username: "Rgprasanna",
     link: "https://leetcode.com/u/Rgprasanna/",
-    description: "Practicing Data Structures, Algorithms, and Problem Solving.",
+    description: "Problem solving, data structures, algorithms, and technical interview preparation.",
     stats: [
       { label: "Rank", value: "886,444" },
-      { label: "Solved", value: "187" },
+      { label: "Solved", value: "187 Problems" },
       { label: "C++", value: "184" },
-      { label: "Java", value: "2" },
-      { label: "Python", value: "1" },
     ],
-    borderColor: "hover:border-[#FFA116]/50",
-    buttonColor: "bg-[#FFA116]/10 text-[#FFA116] border border-[#FFA116]/50 hover:bg-[#FFA116]/20",
   },
   {
     name: "TryHackMe",
-    icon: <SiTryhackme size={36} className="text-white" />,
+    icon: <SiTryhackme size={32} className="text-[#39FF88]" />,
     username: "XyPhor",
     link: "https://tryhackme.com/p/XyPhor",
-    description: "Hands-on cybersecurity labs, CTFs, web exploitation, networking, privilege escalation, and penetration testing.",
+    description: "Hands-on cyber labs, privilege escalation, web exploitation, network enumeration.",
     stats: [
-      { label: "Rank", value: "[0x7] ADEPT" },
+      { label: "Badge Rank", value: "[0x7] ADEPT" },
       { label: "Country", value: "India 🇮🇳" },
-      { label: "Role", value: "Student" },
     ],
-    borderColor: "hover:border-white/50",
-    buttonColor: "bg-white/10 text-white border border-white/50 hover:bg-white/20",
   },
   {
     name: "Hack The Box",
-    icon: <SiHackthebox size={36} className="text-[#9FEF00]" />,
-    nameAlt: "Guru Prasanna R",
+    icon: <SiHackthebox size={32} className="text-[#9FEF00]" />,
     username: "@Rgprasanna",
     link: "https://app.hackthebox.com/profile/Rgprasanna",
-    description: "Practicing penetration testing, machine exploitation, Active Directory, Linux, Windows, and web security labs.",
-    stats: [],
-    borderColor: "hover:border-[#9FEF00]/50",
-    buttonColor: "bg-[#9FEF00]/10 text-[#9FEF00] border border-[#9FEF00]/50 hover:bg-[#9FEF00]/20",
+    description: "Penetration testing labs, machine exploitation, Active Directory, and Linux targets.",
+    stats: [
+      { label: "Target", value: "Pwn & CTF" },
+      { label: "Status", value: "Active Labs" },
+    ],
   }
 ];
 
 export default function Platforms() {
   return (
-    <section id="platforms" className="py-24 relative z-10 bg-black/20">
+    <section id="platforms" className="py-20 relative z-10">
       <div className="container mx-auto px-6">
+        
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-14"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-2">Coding & Cybersecurity Platforms</h2>
-          <div className="w-20 h-1 bg-gradient-accent"></div>
+          <div className="inline-flex items-center gap-2 font-mono text-xs text-[#39FF88] uppercase tracking-widest mb-2">
+            <Terminal size={14} />
+            <span>// ONLINE_SYSTEMS_&_BENCHMARKS</span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-mono font-extrabold text-white tracking-tight">
+            PLATFORMS & PROFILES<span className="text-[#39FF88]">.</span>
+          </h2>
+          <div className="w-16 h-1 bg-[#39FF88] mt-3"></div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {platforms.map((platform, i) => (
             <motion.div
               key={platform.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className={`glass p-6 rounded-xl border border-card-border flex flex-col group transition-colors relative overflow-hidden ${platform.borderColor}`}
+              transition={{ delay: i * 0.08 }}
+              className="rounded-xl border border-white/[0.09] bg-[#0d131d]/80 p-6 flex flex-col justify-between card-hover-lift group"
             >
-              <div className="flex items-start justify-between mb-6">
-                <div className="p-3 bg-black/30 rounded-lg group-hover:scale-110 transition-transform">
-                  {platform.icon}
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="p-3 bg-black/40 rounded-lg border border-white/10 group-hover:scale-110 transition-transform">
+                    {platform.icon}
+                  </div>
+                  <span className="font-mono text-xs text-[#39FF88] font-bold">
+                    {platform.username}
+                  </span>
                 </div>
-              </div>
-              
-              <h3 className="text-2xl font-bold mb-1">{platform.name}</h3>
-              <div className="font-mono text-sm text-foreground/60 mb-4 h-10">
-                {platform.nameAlt ? (
-                  <>
-                    <span className="text-foreground/80">{platform.nameAlt}</span><br />
-                    <span>{platform.username}</span>
-                  </>
-                ) : (
-                  <span>{platform.username}</span>
-                )}
-              </div>
-              
-              <p className="text-foreground/70 text-sm mb-6 flex-grow leading-relaxed">
-                {platform.description}
-              </p>
-              
-              {platform.stats.length > 0 && (
+
+                <h3 className="text-xl font-mono font-bold text-white mb-2 group-hover:text-[#39FF88] transition-colors">
+                  {platform.name}
+                </h3>
+
+                <p className="text-gray-400 font-sans text-xs leading-relaxed mb-6">
+                  {platform.description}
+                </p>
+
                 <div className="flex flex-wrap gap-2 mb-6">
                   {platform.stats.map((stat, j) => (
-                    <span key={j} className="px-2 py-1 bg-black/40 border border-card-border rounded text-xs font-mono">
-                      <span className="text-foreground/50">{stat.label}:</span> <span className="text-foreground/90">{stat.value}</span>
+                    <span key={j} className="px-2 py-1 bg-black/40 border border-white/[0.08] rounded text-[11px] font-mono">
+                      <span className="text-gray-500">{stat.label}:</span>{" "}
+                      <span className="text-gray-200 font-bold">{stat.value}</span>
                     </span>
                   ))}
                 </div>
-              )}
-              
-              <a 
-                href={platform.link} 
-                target="_blank" 
+              </div>
+
+              <a
+                href={platform.link}
+                target="_blank"
                 rel="noreferrer"
-                className={`w-full py-2.5 rounded font-bold text-sm flex items-center justify-center gap-2 transition-all mt-auto interactive ${platform.buttonColor}`}
+                className="w-full py-2.5 rounded-lg bg-black/40 border border-white/10 group-hover:border-[#39FF88] group-hover:bg-[#39FF88] text-white group-hover:text-[#0a0e14] font-mono text-xs font-bold flex items-center justify-center gap-1.5 transition-all mt-auto"
               >
-                View {platform.name} <ExternalLink size={14} />
+                <span>VIEW PROFILE</span>
+                <ArrowUpRight size={14} />
               </a>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

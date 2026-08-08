@@ -1,71 +1,176 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
 import { skills } from "@/data/portfolio";
-import { Shield, Wrench, Code, Server, Container } from "lucide-react";
+import { Shield, Wrench, Code, Server, Container, Terminal, Cpu } from "lucide-react";
 
-const TiltCard = ({ title, items, icon: Icon, delay }: { title: string, items: string[], icon: any, delay: number }) => {
+interface SkillCategoryProps {
+  title: string;
+  items: string[];
+  icon: any;
+  delay: number;
+  badgeStyle: {
+    bg: string;
+    text: string;
+    border: string;
+    glow: string;
+    iconHoverAnim: string;
+  };
+}
+
+const categoryStyles = [
+  {
+    bg: "bg-[#4ade80]/15",
+    text: "text-[#4ade80]",
+    border: "border-[#4ade80]/30",
+    glow: "rgba(74, 222, 128, 0.25)",
+    iconHoverAnim: "group-hover:scale-110 group-hover:-rotate-6",
+  },
+  {
+    bg: "bg-[#34d399]/15",
+    text: "text-[#34d399]",
+    border: "border-[#34d399]/30",
+    glow: "rgba(52, 211, 153, 0.25)",
+    iconHoverAnim: "group-hover:scale-110 group-hover:rotate-12",
+  },
+  {
+    bg: "bg-[#2dd4bf]/15",
+    text: "text-[#2dd4bf]",
+    border: "border-[#2dd4bf]/30",
+    glow: "rgba(45, 212, 191, 0.25)",
+    iconHoverAnim: "group-hover:scale-115 group-hover:-translate-y-1",
+  },
+  {
+    bg: "bg-[#22c55e]/15",
+    text: "text-[#22c55e]",
+    border: "border-[#22c55e]/30",
+    glow: "rgba(34, 197, 94, 0.25)",
+    iconHoverAnim: "group-hover:scale-110 group-hover:translate-y-0.5",
+  },
+  {
+    bg: "bg-[#10b981]/15",
+    text: "text-[#10b981]",
+    border: "border-[#10b981]/30",
+    glow: "rgba(16, 185, 129, 0.25)",
+    iconHoverAnim: "group-hover:scale-110 group-hover:rotate-6",
+  },
+];
+
+const SkillCard = ({ title, items, icon: Icon, delay, badgeStyle }: SkillCategoryProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 20 });
-  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 20 });
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
+
+  // Spotlight Motion Values
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const spotX = useMotionValue(0);
+  const spotY = useMotionValue(0);
+  const spotOpacity = useMotionValue(0);
+
+  const springConfig = { stiffness: 140, damping: 18 };
+  const smoothX = useSpring(rawX, springConfig);
+  const smoothY = useSpring(rawY, springConfig);
+
+  const rotateX = useTransform(smoothY, [-0.5, 0.5], ["7deg", "-7deg"]);
+  const rotateY = useTransform(smoothX, [-0.5, 0.5], ["-7deg", "7deg"]);
+
+  const opacitySpring = useSpring(spotOpacity, { stiffness: 200, damping: 25 });
+  const spotlightBackground = useMotionTemplate`radial-gradient(360px circle at ${spotX}px ${spotY}px, ${badgeStyle.glow}, transparent 80%)`;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
+
+    rawX.set(mouseX / rect.width - 0.5);
+    rawY.set(mouseY / rect.height - 0.5);
+    spotX.set(mouseX);
+    spotY.set(mouseY);
+    spotOpacity.set(1);
   };
 
   const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
+    rawX.set(0);
+    rawY.set(0);
+    spotOpacity.set(0);
   };
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.5, delay }}
-      className="[perspective:1000px] w-full"
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.45, delay }}
+      className="[perspective:1000px] w-full h-full"
     >
       <motion.div
         ref={ref}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className="glass p-6 rounded-xl border border-card-border h-full interactive relative group"
+        whileHover={{ y: -4 }}
+        style={{
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d",
+        }}
+        className="relative rounded-xl border border-white/[0.09] border-t-white/20 bg-[#0d131d]/80 p-6 md:p-7 h-full flex flex-col justify-between overflow-hidden group hover:border-[#4ade80]/50 hover:shadow-[0_12px_32px_-8px_rgba(74,222,128,0.22)] transition-all duration-300 shadow-xl"
       >
-        {/* Glow effect on hover */}
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-violet-500/0 to-cyan-400/0 group-hover:from-cyan-400/5 group-hover:via-violet-500/5 group-hover:to-transparent transition-all duration-500 rounded-xl" />
-        
-        <div className="flex items-center gap-3 mb-6" style={{ transform: "translateZ(30px)" }}>
-          <div className="p-2 bg-background rounded-lg border border-card-border text-cyan-400">
-            <Icon size={24} />
+        {/* Top Highlight Inner Border Glow */}
+        <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:via-[#4ade80]/60 transition-colors" />
+
+        {/* Dynamic Spotlight Glow */}
+        <motion.div
+          className="pointer-events-none absolute -inset-px transition-opacity duration-300 rounded-xl z-0"
+          style={{
+            opacity: opacitySpring,
+            background: spotlightBackground,
+          }}
+        />
+
+        <div className="relative z-10" style={{ transform: "translateZ(16px)" }}>
+          {/* Card Header & Icon Badge */}
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <div className={`p-3 rounded-lg border ${badgeStyle.bg} ${badgeStyle.border} ${badgeStyle.text} ${badgeStyle.iconHoverAnim} transition-transform duration-300 shadow-sm`}>
+                <Icon size={24} />
+              </div>
+              <div>
+                <h3 className="text-lg md:text-xl font-mono font-bold text-white tracking-wider uppercase group-hover:text-[#4ade80] transition-colors">
+                  {title}
+                </h3>
+                <span className="font-mono text-[10px] text-gray-500 uppercase tracking-widest">
+                  {items.length} MODULES
+                </span>
+              </div>
+            </div>
+            
+            {/* Corner Terminal Dot */}
+            <div className="w-2 h-2 rounded-full bg-[#4ade80]/30 group-hover:bg-[#4ade80] group-hover:shadow-[0_0_8px_#4ade80] transition-all" />
           </div>
-          <h3 className="text-xl font-bold">{title}</h3>
+
+          {/* Interactive Skill Tags Grid */}
+          <div className="flex flex-wrap gap-2.5">
+            {items.map((item, idx) => (
+              <motion.span
+                key={item}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.2, delay: delay + idx * 0.02 }}
+                className="px-3 py-1.5 text-xs font-mono bg-black/60 border border-white/[0.08] rounded-md text-gray-300 cursor-default hover:bg-[#4ade80]/15 hover:border-[#4ade80]/50 hover:text-white hover:scale-[1.04] hover:shadow-[0_0_12px_rgba(74,222,128,0.2)] transition-all duration-150 flex items-center gap-1.5 group/tag"
+              >
+                <span className="w-1 h-1 rounded-full bg-gray-500 group-hover/tag:bg-[#4ade80] transition-colors" />
+                <span>{item}</span>
+              </motion.span>
+            ))}
+          </div>
         </div>
-        
-        <div className="flex flex-wrap gap-2" style={{ transform: "translateZ(20px)" }}>
-          {items.map((item) => (
-            <span
-              key={item}
-              className="px-3 py-1 text-sm bg-background/50 border border-card-border rounded-full text-foreground/80 hover:text-cyan-400 hover:border-cyan-400/50 transition-colors cursor-default"
-            >
-              {item}
-            </span>
-          ))}
+
+        {/* Bottom Card Telemetry Bar */}
+        <div className="mt-6 pt-4 border-t border-white/[0.07] flex items-center justify-between text-[11px] font-mono text-gray-500 relative z-10" style={{ transform: "translateZ(10px)" }}>
+          <span className="group-hover:text-gray-300 transition-colors">&gt; STATUS: VERIFIED</span>
+          <span className="text-[#4ade80]/70 group-hover:text-[#4ade80] transition-colors">100% READY</span>
         </div>
       </motion.div>
     </motion.div>
@@ -73,26 +178,74 @@ const TiltCard = ({ title, items, icon: Icon, delay }: { title: string, items: s
 };
 
 export default function Skills() {
-  return (
-    <section id="skills" className="py-24 relative z-10">
-      <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h2 className="text-3xl md:text-5xl font-bold mb-2">Technical Arsenal</h2>
-          <div className="w-20 h-1 bg-gradient-accent"></div>
-        </motion.div>
+  const categoryData = [
+    { title: "Cybersecurity", items: skills.cybersecurity, icon: Shield },
+    { title: "Security Tools", items: skills.tools, icon: Wrench },
+    { title: "Programming", items: skills.programming, icon: Code },
+    { title: "Backend & Dev", items: skills.backend, icon: Server },
+    { title: "DevOps & Env", items: skills.devops, icon: Container },
+  ];
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <TiltCard title="Cybersecurity" items={skills.cybersecurity} icon={Shield} delay={0.1} />
-          <TiltCard title="Tools" items={skills.tools} icon={Wrench} delay={0.2} />
-          <TiltCard title="Programming" items={skills.programming} icon={Code} delay={0.3} />
-          <TiltCard title="Backend & Dev" items={skills.backend} icon={Server} delay={0.4} />
-          <TiltCard title="DevOps & Env" items={skills.devops} icon={Container} delay={0.5} />
+  return (
+    <section id="skills" className="py-24 relative z-10 overflow-hidden">
+      {/* Background Animated Scanline Overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(74,222,128,0.02)_50%)] bg-[length:100%_6px] z-0" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        
+        {/* Section Header */}
+        <div className="mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="inline-flex items-center gap-2.5 font-mono text-xs text-[#4ade80] uppercase tracking-widest mb-3 px-3 py-1 rounded-full bg-[#4ade80]/10 border border-[#4ade80]/25 shadow-[0_0_12px_rgba(74,222,128,0.15)]"
+          >
+            <div className="relative flex items-center justify-center">
+              <span className="w-2 h-2 rounded-full bg-[#4ade80] animate-ping absolute" />
+              <span className="w-2 h-2 rounded-full bg-[#4ade80] relative" />
+            </div>
+            <Terminal size={14} />
+            <span>// CAPABILITIES_&_ARSENAL</span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-3xl sm:text-4xl md:text-5xl font-mono font-extrabold text-white tracking-tight flex items-center flex-wrap"
+          >
+            <span>TECHNICAL ARSENAL</span>
+            <span className="text-[#4ade80]">.</span>
+            {/* Terminal Blinking Cursor Prompt */}
+            <span className="inline-block w-3 h-8 md:h-10 bg-[#4ade80] ml-3 animate-pulse align-middle rounded-sm shadow-[0_0_10px_#4ade80]" />
+          </motion.h2>
+
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: "4.5rem" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="h-1 bg-[#4ade80] mt-4 rounded-full shadow-[0_0_12px_#4ade80]"
+          />
         </div>
+
+        {/* 5-Category Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7">
+          {categoryData.map((cat, index) => (
+            <SkillCard
+              key={cat.title}
+              title={cat.title}
+              items={cat.items}
+              icon={cat.icon}
+              delay={index * 0.1}
+              badgeStyle={categoryStyles[index % categoryStyles.length]}
+            />
+          ))}
+        </div>
+
       </div>
     </section>
   );

@@ -8,11 +8,15 @@ import Certifications from "@/components/sections/Certifications";
 import Education from "@/components/sections/Education";
 import Platforms from "@/components/sections/Platforms";
 import Contact from "@/components/sections/Contact";
+import StatsBar from "@/components/sections/StatsBar";
+import TrustedRow from "@/components/ui/TrustedRow";
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <TrustedRow />
+      <StatsBar />
       <About />
       <Certifications />
       <Skills />
@@ -23,9 +27,15 @@ export default function Home() {
       <Platforms />
       <Contact />
       
-      <footer className="py-8 text-center text-foreground/50 text-sm border-t border-card-border mt-12 glass">
-        <p>© {new Date().getFullYear()} Guru Prasanna R. All rights reserved.</p>
-        <p className="mt-2 font-mono text-xs text-cyan-400/50">SYSTEM_SHUTDOWN // DISCONNECT</p>
+      <footer className="py-10 text-center border-t border-white/[0.09] bg-[#0a0e14] mt-16 font-mono text-xs text-gray-400">
+        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2 text-white font-bold tracking-wider">
+            <span>GPR</span>
+            <span className="text-[#39FF88]">// SEC_OPS</span>
+          </div>
+          <p>© {new Date().getFullYear()} Guru Prasanna R. All Rights Reserved.</p>
+          <p className="text-[#39FF88]">STATUS: 100% OPERATIONAL</p>
+        </div>
       </footer>
     </>
   );
