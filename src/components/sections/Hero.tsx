@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Terminal, FileText, ArrowRight, ShieldCheck, Mail } from "lucide-react";
+import { Terminal, FileText, ArrowRight } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { SiLeetcode, SiTryhackme, SiHackthebox } from "react-icons/si";
 import CyberHeroCanvas from "../ui/CyberHeroCanvas";
@@ -25,16 +25,16 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative pt-28 pb-12 md:pt-36 md:pb-16 overflow-hidden">
+    <section id="home" className="relative pt-28 pb-12 md:pt-36 md:pb-16 overflow-hidden bg-[#050706]">
       <div className="container mx-auto px-6 relative z-10">
         
-        {/* Main Enterprise Container Frame */}
-        <div className="relative rounded-2xl border border-white/[0.09] bg-[#0d131d]/75 backdrop-blur-xl p-6 md:p-12 shadow-2xl shadow-black/80 overflow-hidden cyber-grid">
+        {/* Main Enterprise Container Frame with Vignette & Green Grid */}
+        <div className="relative rounded-2xl border border-white/[0.09] bg-[#080b09]/85 backdrop-blur-xl p-6 md:p-12 shadow-2xl shadow-black/90 overflow-hidden cyber-grid shadow-[inset_0_0_90px_rgba(0,0,0,0.85)]">
           
-          {/* Subtle Accent Radial Behind Card */}
-          <div className="pointer-events-none absolute -top-40 -left-40 w-96 h-96 bg-[#39FF88]/10 rounded-full blur-3xl"></div>
+          {/* Subtle Green Radial Glow Behind Hero Content */}
+          <div className="pointer-events-none absolute -top-40 -left-40 w-[500px] h-[500px] bg-[#39ff6a]/[0.06] rounded-full blur-[100px]"></div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
             
             {/* Left Content Column */}
             <div className="lg:col-span-7 flex flex-col justify-center">
@@ -44,9 +44,9 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#39FF88]/30 bg-[#39FF88]/10 text-[#39FF88] font-mono text-xs font-semibold tracking-wider mb-6 w-fit"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#39ff6a]/30 bg-[#080b09] text-[#39ff6a] font-mono text-xs font-semibold tracking-wider mb-6 w-fit shadow-md"
               >
-                <span className="w-2 h-2 rounded-full bg-[#39FF88] animate-pulse"></span>
+                <span className="w-2 h-2 rounded-full bg-[#39ff6a] animate-pulse"></span>
                 <span>SYSTEM_ONLINE // SECURE_NODE</span>
               </motion.div>
 
@@ -57,7 +57,7 @@ export default function Hero() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-mono font-extrabold tracking-tight text-white mb-4 leading-none"
               >
-                GURU PRASANNA R<span className="text-[#39FF88]">.</span>
+                GURU PRASANNA R<span className="text-[#39ff6a]">.</span>
               </motion.h1>
 
               {/* Dynamic Role Line */}
@@ -67,9 +67,9 @@ export default function Hero() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-lg md:text-xl font-mono font-semibold text-gray-300 mb-6 flex items-center gap-2 h-8"
               >
-                <span className="text-[#39FF88]">&gt;</span>
+                <span className="text-[#39ff6a]">&gt;</span>
                 <span>ROLE:</span>
-                <span className="text-[#39FF88] font-bold tracking-wider">{roles[roleIndex]}</span>
+                <span className="text-[#39ff6a] font-bold tracking-wider">{roles[roleIndex]}</span>
               </motion.div>
 
               {/* Subtext Paragraph */}
@@ -89,21 +89,21 @@ export default function Hero() {
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="flex flex-wrap items-center gap-4"
               >
-                {/* Primary CTA */}
+                {/* Primary CTA (Solid Green, Black Text) */}
                 <a
                   href="#projects"
-                  className="px-7 py-3.5 rounded-lg bg-[#39FF88] text-[#0a0e14] font-mono text-sm font-bold tracking-wider hover:scale-105 hover:shadow-[0_0_24px_rgba(57,255,136,0.5)] transition-all flex items-center gap-2"
+                  className="px-7 py-3.5 rounded-lg bg-[#39ff6a] text-[#050706] font-mono text-sm font-bold tracking-wider hover:scale-105 hover:shadow-[0_0_24px_rgba(57,255,106,0.5)] transition-all flex items-center gap-2"
                 >
                   <span>EXPLORE PROJECTS</span>
                   <ArrowRight size={16} />
                 </a>
 
-                {/* Secondary CTA */}
+                {/* Secondary CTA (Black Background, White Text) */}
                 <a
                   href="https://drive.google.com/file/d/1Z5LX9f_gJpq_Vh9YFfoRbZmMu1WF85Fq/view?usp=drivesdk"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3.5 rounded-lg border border-white/15 bg-white/[0.04] text-white font-mono text-sm font-semibold tracking-wider hover:border-[#39FF88]/50 hover:bg-[#39FF88]/10 hover:text-[#39FF88] transition-all flex items-center gap-2"
+                  className="px-6 py-3.5 rounded-lg border border-white/15 bg-black/60 text-white font-mono text-sm font-semibold tracking-wider hover:border-[#39ff6a] hover:text-[#39ff6a] transition-all flex items-center gap-2"
                 >
                   <FileText size={16} />
                   <span>VIEW RESUME</span>
@@ -115,7 +115,7 @@ export default function Hero() {
                     href="https://github.com/rgp040906"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-lg border border-white/10 bg-black/40 text-gray-300 hover:text-white hover:border-white/40 hover:bg-white/5 transition-all"
+                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-white hover:border-[#39ff6a]/50 transition-all"
                     title="GitHub"
                   >
                     <FaGithub size={18} />
@@ -124,7 +124,7 @@ export default function Hero() {
                     href="https://leetcode.com/u/Rgprasanna/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-lg border border-white/10 bg-black/40 text-gray-300 hover:text-[#FFA116] hover:border-[#FFA116]/40 transition-all"
+                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-[#FFA116] hover:border-[#FFA116]/40 transition-all"
                     title="LeetCode"
                   >
                     <SiLeetcode size={18} />
@@ -133,7 +133,7 @@ export default function Hero() {
                     href="https://tryhackme.com/p/XyPhor"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-lg border border-white/10 bg-black/40 text-gray-300 hover:text-white hover:border-white/40 transition-all"
+                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-[#39ff6a] hover:border-[#39ff6a]/50 transition-all"
                     title="TryHackMe"
                   >
                     <SiTryhackme size={18} />
@@ -142,7 +142,7 @@ export default function Hero() {
                     href="https://app.hackthebox.com/profile/Rgprasanna"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-lg border border-white/10 bg-black/40 text-gray-300 hover:text-[#9FEF00] hover:border-[#9FEF00]/40 transition-all"
+                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-[#9FEF00] hover:border-[#9FEF00]/40 transition-all"
                     title="Hack The Box"
                   >
                     <SiHackthebox size={18} />
@@ -151,7 +151,7 @@ export default function Hero() {
                     href="https://www.linkedin.com/in/guru-prasanna-r-492b66327"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-lg border border-white/10 bg-black/40 text-gray-300 hover:text-[#0A66C2] hover:border-[#0A66C2]/40 transition-all"
+                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-[#0A66C2] hover:border-[#0A66C2]/40 transition-all"
                     title="LinkedIn"
                   >
                     <FaLinkedin size={18} />
@@ -160,7 +160,7 @@ export default function Hero() {
               </motion.div>
             </div>
 
-            {/* Right Column: Interactive Canvas Visual */}
+            {/* Right Column: Refined Glass Telemetry Visual */}
             <div className="lg:col-span-5 h-full">
               <CyberHeroCanvas />
             </div>

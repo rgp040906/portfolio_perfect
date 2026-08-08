@@ -52,7 +52,7 @@ export default function BootSequence({ onComplete }: { onComplete: () => void })
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-[99999] bg-background flex flex-col justify-center px-8 sm:px-24 font-mono text-cyan-400 text-sm sm:text-lg"
+        className="fixed inset-0 z-[99999] bg-[#050706] flex flex-col justify-center px-8 sm:px-24 font-mono text-[#39ff6a] text-sm sm:text-lg"
         initial={{ opacity: 1 }}
         exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
         transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -69,7 +69,7 @@ export default function BootSequence({ onComplete }: { onComplete: () => void })
               animate={{ opacity: 1, x: 0 }}
               className="mb-2"
             >
-              <span className="text-foreground mr-2">{">"}</span>
+              <span className="text-white mr-2">{">"}</span>
               {line}
             </motion.div>
           ))}
@@ -77,11 +77,11 @@ export default function BootSequence({ onComplete }: { onComplete: () => void })
             <motion.div
               animate={{ opacity: [1, 0] }}
               transition={{ repeat: Infinity, duration: 0.8 }}
-              className="w-3 h-5 bg-cyan-400 mt-2"
+              className="w-3 h-5 bg-[#39ff6a] mt-2 shadow-[0_0_10px_#39ff6a]"
             />
           )}
         </div>
-        <div className="absolute bottom-8 left-8 sm:left-24 text-foreground/50 text-xs">
+        <div className="absolute bottom-8 left-8 sm:left-24 text-gray-500 text-xs">
           Click anywhere to skip
         </div>
       </motion.div>

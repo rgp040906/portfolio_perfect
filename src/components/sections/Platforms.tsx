@@ -31,7 +31,7 @@ const platforms = [
   },
   {
     name: "TryHackMe",
-    icon: <SiTryhackme size={32} className="text-[#39FF88]" />,
+    icon: <SiTryhackme size={32} className="text-[#39ff6a]" />,
     username: "XyPhor",
     link: "https://tryhackme.com/p/XyPhor",
     description: "Hands-on cyber labs, privilege escalation, web exploitation, network enumeration.",
@@ -55,7 +55,7 @@ const platforms = [
 
 export default function Platforms() {
   return (
-    <section id="platforms" className="py-20 relative z-10">
+    <section id="platforms" className="py-20 relative z-10 bg-[#050706]">
       <div className="container mx-auto px-6">
         
         {/* Section Header */}
@@ -65,14 +65,14 @@ export default function Platforms() {
           viewport={{ once: true }}
           className="mb-14"
         >
-          <div className="inline-flex items-center gap-2 font-mono text-xs text-[#39FF88] uppercase tracking-widest mb-2">
+          <div className="inline-flex items-center gap-2 font-mono text-xs text-[#39ff6a] uppercase tracking-widest mb-2">
             <Terminal size={14} />
             <span>// ONLINE_SYSTEMS_&_BENCHMARKS</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-mono font-extrabold text-white tracking-tight">
-            PLATFORMS & PROFILES<span className="text-[#39FF88]">.</span>
+            PLATFORMS & PROFILES<span className="text-[#39ff6a]">.</span>
           </h2>
-          <div className="w-16 h-1 bg-[#39FF88] mt-3"></div>
+          <div className="w-16 h-1 bg-[#39ff6a] mt-3"></div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -83,19 +83,19 @@ export default function Platforms() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="rounded-xl border border-white/[0.09] bg-[#0d131d]/80 p-6 flex flex-col justify-between card-hover-lift group"
+              className="rounded-xl border border-white/[0.08] bg-[#080b09]/85 p-6 flex flex-col justify-between card-hover-lift group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="p-3 bg-black/40 rounded-lg border border-white/10 group-hover:scale-110 transition-transform">
+                  <div className="p-3 bg-black/50 rounded-lg border border-white/10 group-hover:scale-110 transition-transform">
                     {platform.icon}
                   </div>
-                  <span className="font-mono text-xs text-[#39FF88] font-bold">
+                  <span className="font-mono text-xs text-[#39ff6a] font-bold">
                     {platform.username}
                   </span>
                 </div>
 
-                <h3 className="text-xl font-mono font-bold text-white mb-2 group-hover:text-[#39FF88] transition-colors">
+                <h3 className="text-xl font-mono font-bold text-white mb-2 group-hover:text-[#39ff6a] transition-colors">
                   {platform.name}
                 </h3>
 
@@ -105,7 +105,7 @@ export default function Platforms() {
 
                 <div className="flex flex-wrap gap-2 mb-6">
                   {platform.stats.map((stat, j) => (
-                    <span key={j} className="px-2 py-1 bg-black/40 border border-white/[0.08] rounded text-[11px] font-mono">
+                    <span key={j} className="px-2 py-1 bg-black/50 border border-white/[0.08] rounded text-[11px] font-mono">
                       <span className="text-gray-500">{stat.label}:</span>{" "}
                       <span className="text-gray-200 font-bold">{stat.value}</span>
                     </span>
@@ -117,7 +117,7 @@ export default function Platforms() {
                 href={platform.link}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full py-2.5 rounded-lg bg-black/40 border border-white/10 group-hover:border-[#39FF88] group-hover:bg-[#39FF88] text-white group-hover:text-[#0a0e14] font-mono text-xs font-bold flex items-center justify-center gap-1.5 transition-all mt-auto"
+                className="w-full py-2.5 rounded-lg bg-black/50 border border-white/10 group-hover:border-[#39ff6a] group-hover:bg-[#39ff6a] text-white group-hover:text-[#050706] font-mono text-xs font-bold flex items-center justify-center gap-1.5 transition-all mt-auto"
               >
                 <span>VIEW PROFILE</span>
                 <ArrowUpRight size={14} />

@@ -21,7 +21,7 @@ const StatItem = ({ icon: Icon, targetValue, suffix = "+", decimals = 0, label, 
 
   useEffect(() => {
     if (isInView) {
-      const duration = 2000; // ms
+      const duration = 2000;
       const steps = 50;
       const stepTime = duration / steps;
       let currentStep = 0;
@@ -29,7 +29,6 @@ const StatItem = ({ icon: Icon, targetValue, suffix = "+", decimals = 0, label, 
       const timer = setInterval(() => {
         currentStep++;
         const progress = currentStep / steps;
-        // Ease out quad
         const easeOut = 1 - (1 - progress) * (1 - progress);
         const val = targetValue * easeOut;
 
@@ -54,18 +53,18 @@ const StatItem = ({ icon: Icon, targetValue, suffix = "+", decimals = 0, label, 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className="group relative p-6 rounded-xl border border-white/[0.09] bg-[#0d131d]/70 backdrop-blur-md hover:border-[#39FF88]/40 hover:shadow-[0_10px_30px_-10px_rgba(57,255,136,0.15)] transition-all duration-300"
+      className="group relative p-6 rounded-xl border border-white/[0.08] bg-[#080b09]/80 backdrop-blur-md hover:border-[#39ff6a]/40 hover:shadow-[0_10px_30px_-10px_rgba(57,255,106,0.15)] transition-all duration-300"
     >
       <div className="flex items-center justify-between mb-4">
         <span className="font-mono text-xs text-gray-400 uppercase tracking-widest">{label}</span>
-        <div className="p-2.5 rounded-lg bg-black/40 border border-white/10 text-[#39FF88] group-hover:scale-110 transition-transform">
+        <div className="p-2.5 rounded-lg bg-black/50 border border-white/10 text-[#39ff6a] group-hover:scale-110 transition-transform">
           <Icon size={20} />
         </div>
       </div>
 
-      <div className="text-3xl md:text-4xl lg:text-5xl font-mono font-bold text-white group-hover:text-[#39FF88] transition-colors mb-2">
+      <div className="text-3xl md:text-4xl lg:text-5xl font-mono font-bold text-white group-hover:text-[#39ff6a] transition-colors mb-2">
         {displayVal}
-        <span className="text-[#39FF88]">{suffix}</span>
+        <span className="text-[#39ff6a]">{suffix}</span>
       </div>
 
       <p className="text-xs text-gray-400 font-mono leading-relaxed">{description}</p>
@@ -75,7 +74,7 @@ const StatItem = ({ icon: Icon, targetValue, suffix = "+", decimals = 0, label, 
 
 export default function StatsBar() {
   return (
-    <section className="py-12 relative z-10">
+    <section className="py-12 relative z-10 bg-[#050706]">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatItem

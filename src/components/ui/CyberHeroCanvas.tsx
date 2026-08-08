@@ -35,7 +35,6 @@ export default function CyberHeroCanvas() {
 
     const nodesCount = 28;
     const nodes: Node[] = [];
-    const mouse = { x: width / 2, y: height / 2, active: false };
 
     for (let i = 0; i < nodesCount; i++) {
       nodes.push({
@@ -45,7 +44,7 @@ export default function CyberHeroCanvas() {
         vy: (Math.random() - 0.5) * 0.8,
         radius: Math.random() * 2.5 + 1.5,
         baseAlpha: Math.random() * 0.6 + 0.3,
-        type: i % 7 === 0 ? "server" : i % 11 === 0 ? "threat" : "node",
+        type: i === 5 ? "threat" : i % 6 === 0 ? "server" : "node",
       });
     }
 
@@ -54,13 +53,13 @@ export default function CyberHeroCanvas() {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Cyber Grid Base Radar
+      // Radar Geometry Center
       const centerX = width / 2;
       const centerY = height / 2;
       const maxRadius = Math.min(width, height) * 0.42;
 
-      // Radar Concentric Circles
-      ctx.strokeStyle = "rgba(57, 255, 136, 0.07)";
+      // Radar Concentric Rings (Low Opacity Green/White)
+      ctx.strokeStyle = "rgba(57, 255, 106, 0.08)";
       ctx.lineWidth = 1;
       for (let r = 1; r <= 3; r++) {
         ctx.beginPath();
@@ -68,14 +67,14 @@ export default function CyberHeroCanvas() {
         ctx.stroke();
       }
 
-      // Radar Sweep Line
+      // Radar Conic Sweep Gradient (Strict Green -> Transparent)
       angle += 0.015;
       ctx.save();
       ctx.translate(centerX, centerY);
       ctx.rotate(angle);
       const sweepGradient = ctx.createConicGradient(0, 0, 0);
-      sweepGradient.addColorStop(0, "rgba(57, 255, 136, 0.25)");
-      sweepGradient.addColorStop(0.12, "rgba(57, 255, 136, 0.05)");
+      sweepGradient.addColorStop(0, "rgba(57, 255, 106, 0.28)");
+      sweepGradient.addColorStop(0.12, "rgba(57, 255, 106, 0.06)");
       sweepGradient.addColorStop(0.3, "transparent");
       sweepGradient.addColorStop(1, "transparent");
 
@@ -87,7 +86,7 @@ export default function CyberHeroCanvas() {
       ctx.fill();
       ctx.restore();
 
-      // Render Node Connections
+      // Render Node Connections (Green Lines)
       for (let i = 0; i < nodes.length; i++) {
         const nodeA = nodes[i];
         nodeA.x += nodeA.vx;
@@ -104,7 +103,7 @@ export default function CyberHeroCanvas() {
 
           if (dist < 120) {
             const alpha = (1 - dist / 120) * 0.25;
-            ctx.strokeStyle = `rgba(57, 255, 136, ${alpha})`;
+            ctx.strokeStyle = `rgba(57, 255, 106, ${alpha})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(nodeA.x, nodeA.y);
@@ -114,36 +113,36 @@ export default function CyberHeroCanvas() {
         }
       }
 
-      // Render Nodes & Telemetry Points
+      // Render Nodes (All Green, 1 Alert Red Dot)
       for (const node of nodes) {
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
 
         if (node.type === "server") {
-          ctx.fillStyle = "#39FF88";
-          ctx.shadowColor = "rgba(57, 255, 136, 0.8)";
+          ctx.fillStyle = "#39ff6a";
+          ctx.shadowColor = "rgba(57, 255, 106, 0.8)";
           ctx.shadowBlur = 10;
         } else if (node.type === "threat") {
-          ctx.fillStyle = "rgba(255, 85, 85, 0.8)";
-          ctx.shadowColor = "rgba(255, 85, 85, 0.6)";
+          ctx.fillStyle = "rgba(255, 77, 77, 0.9)";
+          ctx.shadowColor = "rgba(255, 77, 77, 0.7)";
           ctx.shadowBlur = 8;
         } else {
-          ctx.fillStyle = `rgba(57, 255, 136, ${node.baseAlpha})`;
+          ctx.fillStyle = `rgba(57, 255, 106, ${node.baseAlpha})`;
           ctx.shadowBlur = 0;
         }
 
         ctx.fill();
-        ctx.shadowBlur = 0; // reset
+        ctx.shadowBlur = 0;
       }
 
-      // Center Status Hub Icon
-      ctx.strokeStyle = "rgba(57, 255, 136, 0.5)";
+      // Center Core Beacon
+      ctx.strokeStyle = "rgba(57, 255, 106, 0.6)";
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.arc(centerX, centerY, 8, 0, Math.PI * 2);
       ctx.stroke();
 
-      ctx.fillStyle = "#39FF88";
+      ctx.fillStyle = "#39ff6a";
       ctx.beginPath();
       ctx.arc(centerX, centerY, 3, 0, Math.PI * 2);
       ctx.fill();
@@ -160,13 +159,17 @@ export default function CyberHeroCanvas() {
   }, []);
 
   return (
-    <div className="relative w-full h-full min-h-[380px] md:min-h-[440px] flex items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-black/40">
+    <div className="relative w-full h-full min-h-[380px] md:min-h-[440px] flex items-center justify-center overflow-hidden rounded-xl border border-[#39ff6a]/25 bg-[#080b09]/90 shadow-[inset_0_0_20px_rgba(57,255,106,0.08)]">
       <canvas ref={canvasRef} className="w-full h-full block" />
-      <div className="absolute top-4 left-4 font-mono text-[11px] text-[#39FF88]/80 bg-black/60 px-3 py-1.5 rounded border border-[#39FF88]/20 flex items-center gap-2">
-        <span className="w-2 h-2 rounded-full bg-[#39FF88] animate-pulse"></span>
+      
+      {/* Top Left Sharp Telemetry Label */}
+      <div className="absolute top-4 left-4 font-mono text-[11px] font-bold text-[#39ff6a] bg-[#050706]/90 px-3 py-1.5 rounded border border-[#39ff6a]/30 flex items-center gap-2 shadow-md">
+        <span className="w-2 h-2 rounded-full bg-[#39ff6a] animate-pulse"></span>
         <span>TELEMETRY_FEED // ACTIVE</span>
       </div>
-      <div className="absolute bottom-4 right-4 font-mono text-[10px] text-white/40 bg-black/60 px-2.5 py-1 rounded border border-white/10">
+
+      {/* Bottom Right Latency Readout */}
+      <div className="absolute bottom-4 right-4 font-mono text-[10px] font-bold text-[#39ff6a]/90 bg-[#050706]/90 px-3 py-1.5 rounded border border-[#39ff6a]/30 shadow-md">
         NODES: 28 | LATENCY: 12ms
       </div>
     </div>

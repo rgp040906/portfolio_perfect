@@ -99,15 +99,15 @@ export default function SmoothScrolling({ children }: { children: ReactNode }) {
     <>
       {/* Top Scroll Progress Line Indicator */}
       <div
-        className="fixed top-0 left-0 right-0 h-[3px] bg-[#4ade80] z-[1000] origin-left shadow-[0_0_12px_#4ade80] pointer-events-none transition-transform duration-75"
+        className="fixed top-0 left-0 right-0 h-[3px] bg-[#39ff6a] z-[1000] origin-left shadow-[0_0_12px_#39ff6a] pointer-events-none transition-transform duration-75"
         style={{ transform: `scaleX(${scrollProgress})` }}
       />
 
       {/* Fixed Bottom-Left Live Sector Readout */}
-      <div className="fixed bottom-6 left-6 z-[990] hidden md:flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-[#0a0e14]/90 border border-white/10 font-mono text-[11px] text-[#4ade80] shadow-2xl backdrop-blur-xl pointer-events-none">
-        <span className={`w-2 h-2 rounded-full bg-[#4ade80] ${flashTag ? "animate-ping" : "animate-pulse"}`} />
+      <div className="fixed bottom-6 left-6 z-[990] hidden md:flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-[#050706]/95 border border-[#39ff6a]/30 font-mono text-[11px] text-[#39ff6a] shadow-2xl backdrop-blur-xl pointer-events-none">
+        <span className={`w-2 h-2 rounded-full bg-[#39ff6a] ${flashTag ? "animate-ping" : "animate-pulse"}`} />
         <span className="text-gray-400">SECTOR:</span>
-        <span className={`font-bold transition-all duration-300 ${flashTag ? "text-white scale-105" : "text-[#4ade80]"}`}>
+        <span className={`font-bold transition-all duration-300 ${flashTag ? "text-white scale-105" : "text-[#39ff6a]"}`}>
           //{currentSector}
         </span>
       </div>
