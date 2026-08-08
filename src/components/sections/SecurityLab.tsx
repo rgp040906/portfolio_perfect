@@ -17,6 +17,7 @@ export default function SecurityLab() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-14"
         >
           <div className="inline-flex items-center gap-2 font-mono text-xs text-[#a855f7] uppercase tracking-widest mb-2">
@@ -41,11 +42,11 @@ export default function SecurityLab() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
+                transition={{ duration: 0.8, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
                 className="rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/85 overflow-hidden"
               >
                 <button
-                  className="w-full px-6 py-5 flex items-center justify-between bg-black/50 hover:bg-black/70 transition-colors text-left font-mono"
+                  className="w-full px-6 py-5 flex items-center justify-between bg-black/50 hover:bg-black/70 transition-colors duration-450 ease-out text-left font-mono"
                   onClick={() => setActiveIndex(isOpen ? null : i)}
                 >
                   <div className="flex items-center gap-4">
@@ -55,7 +56,7 @@ export default function SecurityLab() {
                     </span>
                   </div>
                   <ChevronDown
-                    className={`transition-transform duration-300 ${
+                    className={`transition-transform duration-450 ease-out ${
                       isOpen ? "rotate-180 text-[#a855f7]" : "text-gray-500"
                     }`}
                     size={20}
@@ -68,7 +69,7 @@ export default function SecurityLab() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                       className="border-t border-white/[0.08] bg-black/60"
                     >
                       <div className="p-6 md:p-8 font-mono text-sm space-y-6">

@@ -13,6 +13,7 @@ export default function Education() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-14"
         >
           <div className="inline-flex items-center gap-2 font-mono text-xs text-[#a855f7] uppercase tracking-widest mb-2">
@@ -27,9 +28,10 @@ export default function Education() {
 
         <div className="max-w-4xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
             className="rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/85 p-8 relative overflow-hidden card-hover-lift"
           >
             <div className="absolute top-4 right-4 p-4 opacity-5 text-[#a855f7]">
@@ -68,13 +70,17 @@ export default function Education() {
                     "Security Assessment & Risk Analysis",
                     "Web Exploitation & Defence",
                     "Cloud Security & Infrastructure",
-                  ].map((course) => (
-                    <span
+                  ].map((course, idx) => (
+                    <motion.span
                       key={course}
-                      className="px-3 py-1 bg-black/50 border border-white/[0.08] rounded text-xs font-mono text-gray-300"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.35, delay: 0.2 + idx * 0.04, ease: [0.16, 1, 0.3, 1] }}
+                      className="px-3 py-1 bg-black/50 border border-white/[0.08] rounded text-xs font-mono text-gray-300 hover:border-[#a855f7]/40 hover:text-white transition-all duration-300"
                     >
                       {course}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </div>

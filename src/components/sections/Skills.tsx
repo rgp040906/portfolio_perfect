@@ -66,14 +66,14 @@ const SkillCard = ({ title, items, icon: Icon, delay, badgeStyle }: SkillCategor
   const spotY = useMotionValue(0);
   const spotOpacity = useMotionValue(0);
 
-  const springConfig = { stiffness: 140, damping: 18 };
+  const springConfig = { stiffness: 80, damping: 22 };
   const smoothX = useSpring(rawX, springConfig);
   const smoothY = useSpring(rawY, springConfig);
 
   const rotateX = useTransform(smoothY, [-0.5, 0.5], ["7deg", "-7deg"]);
   const rotateY = useTransform(smoothX, [-0.5, 0.5], ["-7deg", "7deg"]);
 
-  const opacitySpring = useSpring(spotOpacity, { stiffness: 200, damping: 25 });
+  const opacitySpring = useSpring(spotOpacity, { stiffness: 120, damping: 25 });
   const spotlightBackground = useMotionTemplate`radial-gradient(360px circle at ${spotX}px ${spotY}px, ${badgeStyle.glow}, transparent 80%)`;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -97,10 +97,10 @@ const SkillCard = ({ title, items, icon: Icon, delay, badgeStyle }: SkillCategor
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 35 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.45, delay }}
+      transition={{ duration: 0.85, delay, ease: [0.16, 1, 0.3, 1] }}
       className="[perspective:1000px] w-full h-full"
     >
       <motion.div
@@ -113,14 +113,14 @@ const SkillCard = ({ title, items, icon: Icon, delay, badgeStyle }: SkillCategor
           rotateY,
           transformStyle: "preserve-3d",
         }}
-        className="relative rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/85 p-6 md:p-7 h-full flex flex-col justify-between overflow-hidden group hover:border-[#a855f7]/50 hover:shadow-[0_12px_32px_-8px_rgba(168,85,247,0.25)] transition-all duration-300 shadow-xl"
+        className="relative rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/85 p-6 md:p-7 h-full flex flex-col justify-between overflow-hidden group hover:border-[#a855f7]/50 hover:shadow-[0_12px_32px_-8px_rgba(168,85,247,0.25)] transition-all duration-450 ease-out shadow-xl"
       >
         {/* Top Highlight Inner Border Glow */}
-        <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:via-[#a855f7]/60 transition-colors" />
+        <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:via-[#a855f7]/60 transition-colors duration-450" />
 
         {/* Dynamic Spotlight Glow */}
         <motion.div
-          className="pointer-events-none absolute -inset-px transition-opacity duration-300 rounded-xl z-0"
+          className="pointer-events-none absolute -inset-px transition-opacity duration-450 rounded-xl z-0"
           style={{
             opacity: opacitySpring,
             background: spotlightBackground,
@@ -131,11 +131,11 @@ const SkillCard = ({ title, items, icon: Icon, delay, badgeStyle }: SkillCategor
           {/* Card Header & Icon Badge */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
-              <div className={`p-3 rounded-lg border ${badgeStyle.bg} ${badgeStyle.border} ${badgeStyle.text} ${badgeStyle.iconHoverAnim} transition-transform duration-300 shadow-sm`}>
+              <div className={`p-3 rounded-lg border ${badgeStyle.bg} ${badgeStyle.border} ${badgeStyle.text} ${badgeStyle.iconHoverAnim} transition-transform duration-450 ease-out shadow-sm`}>
                 <Icon size={24} />
               </div>
               <div>
-                <h3 className="text-lg md:text-xl font-mono font-bold text-white tracking-wider uppercase group-hover:text-[#c4b5fd] transition-colors">
+                <h3 className="text-lg md:text-xl font-mono font-bold text-white tracking-wider uppercase group-hover:text-[#c4b5fd] transition-colors duration-350">
                   {title}
                 </h3>
                 <span className="font-mono text-[10px] text-[#9b8fa0] uppercase tracking-widest">
@@ -145,7 +145,7 @@ const SkillCard = ({ title, items, icon: Icon, delay, badgeStyle }: SkillCategor
             </div>
             
             {/* Corner Terminal Dot */}
-            <div className="w-2 h-2 rounded-full bg-[#a855f7]/30 group-hover:bg-[#a855f7] group-hover:shadow-[0_0_8px_#a855f7] transition-all" />
+            <div className="w-2 h-2 rounded-full bg-[#a855f7]/30 group-hover:bg-[#a855f7] group-hover:shadow-[0_0_8px_#a855f7] transition-all duration-350" />
           </div>
 
           {/* Interactive Skill Tags Grid */}
@@ -156,10 +156,10 @@ const SkillCard = ({ title, items, icon: Icon, delay, badgeStyle }: SkillCategor
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.2, delay: delay + idx * 0.02 }}
-                className="px-3 py-1.5 text-xs font-mono bg-black/60 border border-white/[0.08] rounded-md text-gray-300 cursor-default hover:bg-[#a855f7]/15 hover:border-[#a855f7]/50 hover:text-white hover:scale-[1.04] hover:shadow-[0_0_12px_rgba(168,85,247,0.25)] transition-all duration-150 flex items-center gap-1.5 group/tag"
+                transition={{ duration: 0.35, delay: delay + idx * 0.04, ease: [0.16, 1, 0.3, 1] }}
+                className="px-3 py-1.5 text-xs font-mono bg-black/60 border border-white/[0.08] rounded-md text-gray-300 cursor-default hover:bg-[#a855f7]/15 hover:border-[#a855f7]/50 hover:text-white hover:scale-[1.04] hover:shadow-[0_0_12px_rgba(168,85,247,0.25)] transition-all duration-300 flex items-center gap-1.5 group/tag"
               >
-                <span className="w-1 h-1 rounded-full bg-gray-500 group-hover/tag:bg-[#a855f7] transition-colors" />
+                <span className="w-1 h-1 rounded-full bg-gray-500 group-hover/tag:bg-[#a855f7] transition-colors duration-300" />
                 <span>{item}</span>
               </motion.span>
             ))}
@@ -168,8 +168,8 @@ const SkillCard = ({ title, items, icon: Icon, delay, badgeStyle }: SkillCategor
 
         {/* Bottom Card Telemetry Bar */}
         <div className="mt-6 pt-4 border-t border-white/[0.07] flex items-center justify-between text-[11px] font-mono text-[#9b8fa0] relative z-10" style={{ transform: "translateZ(10px)" }}>
-          <span className="group-hover:text-gray-300 transition-colors">&gt; STATUS: VERIFIED</span>
-          <span className="text-[#c4b5fd]/80 group-hover:text-[#c4b5fd] transition-colors">100% READY</span>
+          <span className="group-hover:text-gray-300 transition-colors duration-300">&gt; STATUS: VERIFIED</span>
+          <span className="text-[#c4b5fd]/80 group-hover:text-[#c4b5fd] transition-colors duration-300">100% READY</span>
         </div>
       </motion.div>
     </motion.div>
@@ -198,7 +198,7 @@ export default function Skills() {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="inline-flex items-center gap-2.5 font-mono text-xs text-[#a855f7] uppercase tracking-widest mb-3 px-3 py-1 rounded-full bg-[#a855f7]/10 border border-[#a855f7]/25 shadow-[0_0_12px_rgba(168,85,247,0.15)]"
           >
             <div className="relative flex items-center justify-center">
@@ -213,7 +213,7 @@ export default function Skills() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="text-3xl sm:text-4xl md:text-5xl font-mono font-extrabold text-white tracking-tight flex items-center flex-wrap"
           >
             <span>TECHNICAL ARSENAL</span>
@@ -226,7 +226,7 @@ export default function Skills() {
             initial={{ width: 0 }}
             whileInView={{ width: "4.5rem" }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="h-1 bg-[#a855f7] mt-4 rounded-full shadow-[0_0_12px_#a855f7]"
           />
         </div>
@@ -239,7 +239,7 @@ export default function Skills() {
               title={cat.title}
               items={cat.items}
               icon={cat.icon}
-              delay={index * 0.1}
+              delay={index * 0.18}
               badgeStyle={categoryStyles[index % categoryStyles.length]}
             />
           ))}

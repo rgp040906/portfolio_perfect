@@ -14,6 +14,7 @@ export default function Experience() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-14"
         >
           <div className="inline-flex items-center gap-2 font-mono text-xs text-[#a855f7] uppercase tracking-widest mb-2">
@@ -40,7 +41,7 @@ export default function Experience() {
                 initial={{ opacity: 0, x: index % 2 === 0 ? 40 : -40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
                 className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 md:p-8 rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/85 card-hover-lift"
               >
                 <div className="mb-4">

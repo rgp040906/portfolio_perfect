@@ -28,13 +28,13 @@ export default function SmoothScrolling({ children }: { children: ReactNode }) {
     if (prefersReducedMotion) return;
 
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 1.8, // Heavy, fluid, cinematic scroll pacing
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth easeOutExpo
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
+      wheelMultiplier: 0.85, // Weightier scroll feel
+      touchMultiplier: 1.5,
     });
 
     lenisRef.current = lenis;
@@ -57,7 +57,7 @@ export default function SmoothScrolling({ children }: { children: ReactNode }) {
             if (currentSector !== section.label) {
               setCurrentSector(section.label);
               setFlashTag(true);
-              setTimeout(() => setFlashTag(false), 1400);
+              setTimeout(() => setFlashTag(false), 2000);
             }
             break;
           }
@@ -82,7 +82,7 @@ export default function SmoothScrolling({ children }: { children: ReactNode }) {
         const targetEl = document.querySelector(anchor.hash);
         if (targetEl) {
           e.preventDefault();
-          lenis.scrollTo(targetEl as HTMLElement, { offset: -60, duration: 1.2 });
+          lenis.scrollTo(targetEl as HTMLElement, { offset: -60, duration: 1.8 });
         }
       }
     };
@@ -99,7 +99,7 @@ export default function SmoothScrolling({ children }: { children: ReactNode }) {
     <>
       {/* Top Scroll Progress Line Indicator */}
       <div
-        className="fixed top-0 left-0 right-0 h-[3px] bg-[#a855f7] z-[1000] origin-left shadow-[0_0_12px_#a855f7] pointer-events-none transition-transform duration-75"
+        className="fixed top-0 left-0 right-0 h-[3px] bg-[#a855f7] z-[1000] origin-left shadow-[0_0_12px_#a855f7] pointer-events-none transition-transform duration-150 ease-out"
         style={{ transform: `scaleX(${scrollProgress})` }}
       />
 
@@ -107,7 +107,7 @@ export default function SmoothScrolling({ children }: { children: ReactNode }) {
       <div className="fixed bottom-6 left-6 z-[990] hidden md:flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-[#0a0810]/95 border border-[#a855f7]/30 font-mono text-[11px] text-[#a855f7] shadow-2xl backdrop-blur-xl pointer-events-none">
         <span className={`w-2 h-2 rounded-full bg-[#a855f7] ${flashTag ? "animate-ping" : "animate-pulse"}`} />
         <span className="text-[#9b8fa0]">SECTOR:</span>
-        <span className={`font-bold transition-all duration-300 ${flashTag ? "text-white scale-105" : "text-[#c4b5fd]"}`}>
+        <span className={`font-bold transition-all duration-500 ${flashTag ? "text-white scale-105" : "text-[#c4b5fd]"}`}>
           //{currentSector}
         </span>
       </div>

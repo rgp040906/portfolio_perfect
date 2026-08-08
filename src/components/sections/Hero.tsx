@@ -20,7 +20,7 @@ export default function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setRoleIndex((prev) => (prev + 1) % roles.length);
-    }, 3200);
+    }, 4200);
     return () => clearInterval(interval);
   }, []);
 
@@ -43,7 +43,7 @@ export default function Hero() {
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#a855f7]/35 bg-[#0a0810] text-[#a855f7] font-mono text-xs font-semibold tracking-wider mb-6 w-fit shadow-md"
               >
                 <span className="w-2 h-2 rounded-full bg-[#a855f7] animate-pulse"></span>
@@ -52,9 +52,9 @@ export default function Hero() {
 
               {/* Main Headline */}
               <motion.h1
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 25 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
+                transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
                 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-mono font-extrabold tracking-tight text-white mb-4 leading-none"
               >
                 GURU PRASANNA R<span className="text-[#a855f7]">.</span>
@@ -64,7 +64,7 @@ export default function Hero() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+                transition={{ duration: 0.85, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 className="text-lg md:text-xl font-mono font-semibold text-gray-300 mb-6 flex items-center gap-2 h-8"
               >
                 <span className="text-[#a855f7]">&gt;</span>
@@ -76,7 +76,7 @@ export default function Hero() {
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
+                transition={{ duration: 0.85, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
                 className="text-[#9b8fa0] text-base md:text-lg max-w-xl mb-8 leading-relaxed font-sans"
               >
                 Cybersecurity student specializing in ethical hacking, vulnerability assessment, web exploitation, and secure system architecture. Building battle-tested security tools and analyzing real-world attack vectors.
@@ -86,10 +86,10 @@ export default function Hero() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
+                transition={{ duration: 0.85, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 className="flex flex-wrap items-center gap-4"
               >
-                {/* Primary CTA (Subtle Violet Gradient Fill) */}
+                {/* Primary CTA */}
                 <a
                   href="#projects"
                   className="px-7 py-3.5 rounded-lg btn-violet-gradient text-white font-mono text-sm font-bold tracking-wider flex items-center gap-2"
@@ -98,12 +98,12 @@ export default function Hero() {
                   <ArrowRight size={16} />
                 </a>
 
-                {/* Secondary CTA (Black Background, White Border & Soft Lavender Text) */}
+                {/* Secondary CTA */}
                 <a
                   href="https://drive.google.com/file/d/1Z5LX9f_gJpq_Vh9YFfoRbZmMu1WF85Fq/view?usp=drivesdk"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3.5 rounded-lg border border-white/15 bg-black/60 text-white font-mono text-sm font-semibold tracking-wider hover:border-[#a855f7] hover:text-[#c4b5fd] transition-all flex items-center gap-2"
+                  className="px-6 py-3.5 rounded-lg border border-white/15 bg-black/60 text-white font-mono text-sm font-semibold tracking-wider hover:border-[#a855f7] hover:text-[#c4b5fd] transition-all duration-450 ease-out flex items-center gap-2"
                 >
                   <FileText size={16} />
                   <span>VIEW RESUME</span>
@@ -115,7 +115,7 @@ export default function Hero() {
                     href="https://github.com/rgp040906"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-white hover:border-[#a855f7]/50 transition-all"
+                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-white hover:border-[#a855f7]/50 transition-all duration-300"
                     title="GitHub"
                   >
                     <FaGithub size={18} />
@@ -124,7 +124,7 @@ export default function Hero() {
                     href="https://leetcode.com/u/Rgprasanna/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-[#FFA116] hover:border-[#FFA116]/40 transition-all"
+                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-[#FFA116] hover:border-[#FFA116]/40 transition-all duration-300"
                     title="LeetCode"
                   >
                     <SiLeetcode size={18} />
@@ -133,7 +133,7 @@ export default function Hero() {
                     href="https://tryhackme.com/p/XyPhor"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-[#c4b5fd] hover:border-[#a855f7]/50 transition-all"
+                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-[#c4b5fd] hover:border-[#a855f7]/50 transition-all duration-300"
                     title="TryHackMe"
                   >
                     <SiTryhackme size={18} />
@@ -142,7 +142,7 @@ export default function Hero() {
                     href="https://app.hackthebox.com/profile/Rgprasanna"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-[#9FEF00] hover:border-[#9FEF00]/40 transition-all"
+                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-[#9FEF00] hover:border-[#9FEF00]/40 transition-all duration-300"
                     title="Hack The Box"
                   >
                     <SiHackthebox size={18} />
@@ -151,7 +151,7 @@ export default function Hero() {
                     href="https://www.linkedin.com/in/guru-prasanna-r-492b66327"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-[#0A66C2] hover:border-[#0A66C2]/40 transition-all"
+                    className="p-3 rounded-lg border border-white/10 bg-black/50 text-gray-300 hover:text-[#0A66C2] hover:border-[#0A66C2]/40 transition-all duration-300"
                     title="LinkedIn"
                   >
                     <FaLinkedin size={18} />

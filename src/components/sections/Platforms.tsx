@@ -63,6 +63,7 @@ export default function Platforms() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-14"
         >
           <div className="inline-flex items-center gap-2 font-mono text-xs text-[#a855f7] uppercase tracking-widest mb-2">
@@ -79,15 +80,15 @@ export default function Platforms() {
           {platforms.map((platform, i) => (
             <motion.div
               key={platform.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
+              transition={{ duration: 0.8, delay: i * 0.18, ease: [0.16, 1, 0.3, 1] }}
               className="rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/85 p-6 flex flex-col justify-between card-hover-lift group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="p-3 bg-black/50 rounded-lg border border-white/10 group-hover:scale-110 transition-transform">
+                  <div className="p-3 bg-black/50 rounded-lg border border-white/10 group-hover:scale-110 transition-transform duration-450 ease-out">
                     {platform.icon}
                   </div>
                   <span className="font-mono text-xs text-[#c4b5fd] font-bold">
@@ -95,7 +96,7 @@ export default function Platforms() {
                   </span>
                 </div>
 
-                <h3 className="text-xl font-mono font-bold text-white mb-2 group-hover:text-[#c4b5fd] transition-colors">
+                <h3 className="text-xl font-mono font-bold text-white mb-2 group-hover:text-[#c4b5fd] transition-colors duration-350">
                   {platform.name}
                 </h3>
 
@@ -117,7 +118,7 @@ export default function Platforms() {
                 href={platform.link}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full py-2.5 rounded-lg bg-black/50 border border-white/10 group-hover:border-[#a855f7] group-hover:btn-violet-gradient text-white font-mono text-xs font-bold flex items-center justify-center gap-1.5 transition-all mt-auto"
+                className="w-full py-2.5 rounded-lg bg-black/50 border border-white/10 group-hover:border-[#a855f7] group-hover:btn-violet-gradient text-white font-mono text-xs font-bold flex items-center justify-center gap-1.5 transition-all duration-450 ease-out mt-auto"
               >
                 <span>VIEW PROFILE</span>
                 <ArrowUpRight size={14} />

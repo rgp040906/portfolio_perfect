@@ -40,13 +40,13 @@ const InteractiveTiltCard = ({
   const spotY = useMotionValue(0);
   const spotOpacity = useMotionValue(0);
 
-  const springConfig = { stiffness: 120, damping: 18, mass: 0.4 };
+  const springConfig = { stiffness: 80, damping: 22 };
   const smoothX = useSpring(rawX, springConfig);
   const smoothY = useSpring(rawY, springConfig);
 
   const rotateX = useTransform(smoothY, [-0.5, 0.5], ["7deg", "-7deg"]);
   const rotateY = useTransform(smoothX, [-0.5, 0.5], ["-7deg", "7deg"]);
-  const opacitySpring = useSpring(spotOpacity, { stiffness: 200, damping: 25 });
+  const opacitySpring = useSpring(spotOpacity, { stiffness: 120, damping: 25 });
 
   const spotlightBackground = useMotionTemplate`radial-gradient(380px circle at ${spotX}px ${spotY}px, rgba(168, 85, 247, 0.18), transparent 80%)`;
 
@@ -81,11 +81,11 @@ const InteractiveTiltCard = ({
           rotateY,
           transformStyle: "preserve-3d",
         }}
-        className={`rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/85 transition-colors duration-300 relative group overflow-hidden hover:border-[#a855f7]/45 hover:shadow-[0_10px_30px_-10px_rgba(168,85,247,0.2)] ${className}`}
+        className={`rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/85 transition-colors duration-450 ease-out relative group overflow-hidden hover:border-[#a855f7]/45 hover:shadow-[0_10px_30px_-10px_rgba(168,85,247,0.2)] ${className}`}
       >
         {/* Dynamic Spotlight Glow */}
         <motion.div
-          className="pointer-events-none absolute -inset-px transition-opacity duration-300 rounded-xl z-0"
+          className="pointer-events-none absolute -inset-px transition-opacity duration-450 rounded-xl z-0"
           style={{
             opacity: opacitySpring,
             background: spotlightBackground,
@@ -110,6 +110,7 @@ export default function Certifications() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-14"
         >
           <div className="inline-flex items-center gap-2 font-mono text-xs text-[#a855f7] uppercase tracking-widest mb-2">
@@ -141,13 +142,13 @@ export default function Certifications() {
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
+                transition={{ duration: 0.8, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
                 className="h-full"
               >
                 <InteractiveTiltCard>
                   {/* Badge Row */}
                   <div className="flex justify-between items-start mb-4">
-                    <div className="p-3 bg-black/50 rounded-lg border border-white/10 text-[#a855f7] group-hover:scale-110 transition-transform">
+                    <div className="p-3 bg-black/50 rounded-lg border border-white/10 text-[#a855f7] group-hover:scale-110 transition-transform duration-450 ease-out">
                       <Award size={24} />
                     </div>
                     <span className="px-3 py-1 bg-[#a855f7]/10 border border-[#a855f7]/30 text-[#c4b5fd] text-xs font-mono rounded-full font-bold">
@@ -156,7 +157,7 @@ export default function Certifications() {
                   </div>
 
                   {/* Title */}
-                  <h4 className="text-lg font-mono font-bold text-white mb-3 group-hover:text-[#c4b5fd] transition-colors leading-snug">
+                  <h4 className="text-lg font-mono font-bold text-white mb-3 group-hover:text-[#c4b5fd] transition-colors duration-350 leading-snug">
                     {cert.title}
                   </h4>
 
@@ -199,7 +200,7 @@ export default function Certifications() {
                     href={cert.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-black/50 hover:bg-[#a855f7] border border-white/10 hover:border-[#a855f7] text-[#c4b5fd] hover:text-white rounded-lg font-mono text-xs font-bold transition-all duration-300 group/btn"
+                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-black/50 hover:bg-[#a855f7] border border-white/10 hover:border-[#a855f7] text-[#c4b5fd] hover:text-white rounded-lg font-mono text-xs font-bold transition-all duration-450 ease-out group/btn"
                   >
                     <span>VERIFY CREDENTIAL</span>
                     <ExternalLink size={14} />
@@ -226,7 +227,7 @@ export default function Certifications() {
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
+                transition={{ duration: 0.8, delay: i * 0.18, ease: [0.16, 1, 0.3, 1] }}
                 className="h-full"
               >
                 <InteractiveTiltCard>
@@ -239,7 +240,7 @@ export default function Certifications() {
                     </span>
                   </div>
 
-                  <h4 className="text-base font-mono font-bold text-white mb-2 group-hover:text-[#c4b5fd] transition-colors leading-snug">
+                  <h4 className="text-base font-mono font-bold text-white mb-2 group-hover:text-[#c4b5fd] transition-colors duration-350 leading-snug">
                     {sim.title}
                   </h4>
 
@@ -263,7 +264,7 @@ export default function Certifications() {
                     href={sim.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-black/50 hover:bg-[#a855f7] border border-white/10 hover:border-[#a855f7] text-[#c4b5fd] hover:text-white rounded-lg font-mono text-xs font-bold transition-all duration-300"
+                    className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-black/50 hover:bg-[#a855f7] border border-white/10 hover:border-[#a855f7] text-[#c4b5fd] hover:text-white rounded-lg font-mono text-xs font-bold transition-all duration-450 ease-out"
                   >
                     <span>VIEW CERTIFICATE</span>
                     <ExternalLink size={14} />
@@ -290,7 +291,7 @@ export default function Certifications() {
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
+                transition={{ duration: 0.8, delay: i * 0.18, ease: [0.16, 1, 0.3, 1] }}
                 className="h-full"
               >
                 <InteractiveTiltCard>
@@ -303,7 +304,7 @@ export default function Certifications() {
                     </span>
                   </div>
 
-                  <h4 className="text-base font-mono font-bold text-white mb-2 group-hover:text-[#c4b5fd] transition-colors leading-snug">
+                  <h4 className="text-base font-mono font-bold text-white mb-2 group-hover:text-[#c4b5fd] transition-colors duration-350 leading-snug">
                     {achieve.title}
                   </h4>
 

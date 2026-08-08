@@ -17,7 +17,7 @@ export default function Contact() {
     setTimeout(() => {
       setFormState("success");
       setTimeout(() => setFormState("idle"), 5000);
-    }, 1500);
+    }, 1800);
   };
 
   return (
@@ -29,6 +29,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-14"
         >
           <div className="inline-flex items-center gap-2 font-mono text-xs text-[#a855f7] uppercase tracking-widest mb-2">
@@ -45,9 +46,10 @@ export default function Contact() {
           
           {/* Contact Details & Links */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -25 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-8"
           >
             <p className="text-[#9b8fa0] font-sans text-base leading-relaxed">
@@ -57,14 +59,14 @@ export default function Contact() {
             {/* Email Card */}
             <a
               href="mailto:guruprasannargp2006@gmail.com"
-              className="flex items-center gap-4 p-5 rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/85 hover:border-[#a855f7]/40 hover:bg-[#a855f7]/5 transition-all group shadow-lg"
+              className="flex items-center gap-4 p-5 rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/85 hover:border-[#a855f7]/40 hover:bg-[#a855f7]/5 transition-all duration-450 ease-out group shadow-lg"
             >
-              <div className="p-3.5 rounded-lg bg-black/50 border border-white/10 text-[#a855f7] group-hover:scale-110 transition-transform">
+              <div className="p-3.5 rounded-lg bg-black/50 border border-white/10 text-[#a855f7] group-hover:scale-110 transition-transform duration-450 ease-out">
                 <Mail size={22} />
               </div>
               <div>
                 <div className="font-mono text-xs text-[#9b8fa0] uppercase tracking-wider">PRIMARY_EMAIL</div>
-                <div className="font-mono text-base font-bold text-white group-hover:text-[#c4b5fd] transition-colors">
+                <div className="font-mono text-base font-bold text-white group-hover:text-[#c4b5fd] transition-colors duration-350">
                   guruprasannargp2006@gmail.com
                 </div>
               </div>
@@ -80,7 +82,7 @@ export default function Contact() {
                   href="https://github.com/rgp040906"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-3.5 rounded-lg border border-white/10 bg-[#0f0b18] text-gray-300 hover:text-white hover:border-white/40 transition-all flex items-center gap-2"
+                  className="p-3.5 rounded-lg border border-white/10 bg-[#0f0b18] text-gray-300 hover:text-white hover:border-white/40 transition-all duration-350 flex items-center gap-2"
                   title="GitHub"
                 >
                   <FaGithub size={20} />
@@ -90,7 +92,7 @@ export default function Contact() {
                   href="https://leetcode.com/u/Rgprasanna/"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-3.5 rounded-lg border border-white/10 bg-[#0f0b18] text-gray-300 hover:text-[#FFA116] hover:border-[#FFA116]/40 transition-all flex items-center gap-2"
+                  className="p-3.5 rounded-lg border border-white/10 bg-[#0f0b18] text-gray-300 hover:text-[#FFA116] hover:border-[#FFA116]/40 transition-all duration-350 flex items-center gap-2"
                   title="LeetCode"
                 >
                   <SiLeetcode size={20} />
@@ -100,7 +102,7 @@ export default function Contact() {
                   href="https://tryhackme.com/p/XyPhor"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-3.5 rounded-lg border border-white/10 bg-[#0f0b18] text-gray-300 hover:text-[#c4b5fd] hover:border-[#a855f7]/50 transition-all flex items-center gap-2"
+                  className="p-3.5 rounded-lg border border-white/10 bg-[#0f0b18] text-gray-300 hover:text-[#c4b5fd] hover:border-[#a855f7]/50 transition-all duration-350 flex items-center gap-2"
                   title="TryHackMe"
                 >
                   <SiTryhackme size={20} />
@@ -110,7 +112,7 @@ export default function Contact() {
                   href="https://app.hackthebox.com/profile/Rgprasanna"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-3.5 rounded-lg border border-white/10 bg-[#0f0b18] text-gray-300 hover:text-[#9FEF00] hover:border-[#9FEF00]/40 transition-all flex items-center gap-2"
+                  className="p-3.5 rounded-lg border border-white/10 bg-[#0f0b18] text-gray-300 hover:text-[#9FEF00] hover:border-[#9FEF00]/40 transition-all duration-350 flex items-center gap-2"
                   title="Hack The Box"
                 >
                   <SiHackthebox size={20} />
@@ -120,7 +122,7 @@ export default function Contact() {
                   href="https://www.linkedin.com/in/guru-prasanna-r-492b66327"
                   target="_blank"
                   rel="noreferrer"
-                  className="p-3.5 rounded-lg border border-white/10 bg-[#0f0b18] text-gray-300 hover:text-[#0A66C2] hover:border-[#0A66C2]/40 transition-all flex items-center gap-2"
+                  className="p-3.5 rounded-lg border border-white/10 bg-[#0f0b18] text-gray-300 hover:text-[#0A66C2] hover:border-[#0A66C2]/40 transition-all duration-350 flex items-center gap-2"
                   title="LinkedIn"
                 >
                   <FaLinkedin size={20} />
@@ -132,9 +134,10 @@ export default function Contact() {
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 25 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/90 p-8 shadow-xl"
           >
             <div className="flex items-center gap-2 mb-6 font-mono text-sm font-bold text-[#a855f7]">
@@ -152,7 +155,7 @@ export default function Contact() {
                   id="name"
                   required
                   disabled={formState === "submitting"}
-                  className="w-full bg-black/60 border border-white/10 rounded-lg px-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-[#a855f7] focus:ring-1 focus:ring-[#a855f7] transition-all disabled:opacity-50"
+                  className="w-full bg-black/60 border border-white/10 rounded-lg px-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-[#a855f7] focus:ring-1 focus:ring-[#a855f7] transition-all duration-350 disabled:opacity-50"
                   placeholder="e.g. Alex Mercer"
                 />
               </div>
@@ -166,7 +169,7 @@ export default function Contact() {
                   id="email"
                   required
                   disabled={formState === "submitting"}
-                  className="w-full bg-black/60 border border-white/10 rounded-lg px-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-[#a855f7] focus:ring-1 focus:ring-[#a855f7] transition-all disabled:opacity-50"
+                  className="w-full bg-black/60 border border-white/10 rounded-lg px-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-[#a855f7] focus:ring-1 focus:ring-[#a855f7] transition-all duration-350 disabled:opacity-50"
                   placeholder="e.g. alex@enterprise.sec"
                 />
               </div>
@@ -180,7 +183,7 @@ export default function Contact() {
                   rows={4}
                   required
                   disabled={formState === "submitting"}
-                  className="w-full bg-black/60 border border-white/10 rounded-lg px-4 py-3 text-white font-sans text-sm focus:outline-none focus:border-[#a855f7] focus:ring-1 focus:ring-[#a855f7] transition-all resize-none disabled:opacity-50"
+                  className="w-full bg-black/60 border border-white/10 rounded-lg px-4 py-3 text-white font-sans text-sm focus:outline-none focus:border-[#a855f7] focus:ring-1 focus:ring-[#a855f7] transition-all duration-350 resize-none disabled:opacity-50"
                   placeholder="Type your transmission message here..."
                 ></textarea>
               </div>
@@ -189,7 +192,7 @@ export default function Contact() {
                 type="submit"
                 disabled={formState !== "idle"}
                 whileTap={{ scale: 0.98 }}
-                className={`w-full py-4 rounded-lg font-mono text-sm font-bold tracking-wider transition-all flex items-center justify-center gap-2 ${
+                className={`w-full py-4 rounded-lg font-mono text-sm font-bold tracking-wider transition-all duration-450 ease-out flex items-center justify-center gap-2 ${
                   formState === "idle"
                     ? "btn-violet-gradient cursor-pointer"
                     : formState === "submitting"
@@ -209,7 +212,7 @@ export default function Contact() {
                   <>
                     <motion.div
                       animate={{ rotate: 360 }}
-                      transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
                     >
                       <Send size={16} />
                     </motion.div>

@@ -11,7 +11,7 @@ const iconMap: Record<string, any> = {
 };
 
 // Typewriter Component for Terminal Eyebrow & Impact
-const TypewriterText = ({ text, speed = 35, delay = 0, className = "" }: { text: string; speed?: number; delay?: number; className?: string }) => {
+const TypewriterText = ({ text, speed = 50, delay = 0, className = "" }: { text: string; speed?: number; delay?: number; className?: string }) => {
   const [displayedText, setDisplayedText] = useState("");
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const ref = useRef(null);
@@ -57,10 +57,10 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index:
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, y: 35 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 35 }}
-      transition={{ duration: 0.5, delay: index * 0.12 }}
-      className={`group relative rounded-xl border border-t-white/20 bg-[#0f0b18]/85 p-7 flex flex-col justify-between overflow-hidden transition-all duration-300 ${
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      transition={{ duration: 0.85, delay: index * 0.2, ease: [0.16, 1, 0.3, 1] }}
+      className={`group relative rounded-xl border border-t-white/20 bg-[#0f0b18]/85 p-7 flex flex-col justify-between overflow-hidden transition-all duration-450 ease-out ${
         project.featured
           ? "md:col-span-2 lg:col-span-2 border-[#a855f7]/60 shadow-[0_0_30px_rgba(168,85,247,0.18)] animate-pulse-slow"
           : "border-white/[0.08] hover:border-[#a855f7]/50 hover:border-t-2 hover:border-t-[#a855f7] hover:shadow-[0_12px_36px_-8px_rgba(168,85,247,0.22)]"
@@ -80,12 +80,12 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index:
           strokeDasharray="1200"
           initial={{ strokeDashoffset: 1200, opacity: 0 }}
           animate={isInView ? { strokeDashoffset: 0, opacity: [0, 1, 1, 0.35] } : { strokeDashoffset: 1200, opacity: 0 }}
-          transition={{ duration: 1.3, delay: index * 0.14, ease: "easeInOut" }}
+          transition={{ duration: 1.6, delay: index * 0.22, ease: [0.16, 1, 0.3, 1] }}
         />
       </svg>
 
       {/* Hover Scanline Sweep Line */}
-      <div className="pointer-events-none absolute inset-x-0 h-[2px] bg-[#a855f7] shadow-[0_0_12px_#a855f7] opacity-0 group-hover:opacity-100 -translate-y-full group-hover:translate-y-[450px] transition-all duration-700 ease-in-out z-20" />
+      <div className="pointer-events-none absolute inset-x-0 h-[2px] bg-[#a855f7] shadow-[0_0_12px_#a855f7] opacity-0 group-hover:opacity-100 -translate-y-full group-hover:translate-y-[450px] transition-all duration-1000 ease-in-out z-20" />
 
       {/* Featured System Shimmer Badge */}
       {project.featured && (
@@ -95,14 +95,14 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index:
             <span>FEATURED_SYSTEM</span>
           </span>
           {/* Metallic Sheen Sweep */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1200 ease-in-out" />
         </div>
       )}
 
       <div className="relative z-10">
         {/* Top Header Row: Icon & Links */}
         <div className="flex justify-between items-start mb-6">
-          <div className="p-3.5 bg-black/50 rounded-xl border border-white/10 text-[#a855f7] group-hover:scale-110 group-hover:bg-[#a855f7]/15 group-hover:border-[#a855f7]/50 transition-all duration-300 shadow-md">
+          <div className="p-3.5 bg-black/50 rounded-xl border border-white/10 text-[#a855f7] group-hover:scale-110 group-hover:bg-[#a855f7]/15 group-hover:border-[#a855f7]/50 transition-all duration-450 ease-out shadow-md">
             <Icon size={26} />
           </div>
 
@@ -112,9 +112,9 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index:
               href="https://github.com/rgp040906"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.15 }}
-              transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              className="p-2.5 rounded-lg border border-white/10 bg-black/50 text-gray-400 hover:bg-[#a855f7] hover:text-white hover:border-[#a855f7] transition-colors"
+              whileHover={{ scale: 1.12 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="p-2.5 rounded-lg border border-white/10 bg-black/50 text-gray-400 hover:bg-[#a855f7] hover:text-white hover:border-[#a855f7] transition-colors duration-300"
               title="Repository"
             >
               <FaGithub size={18} />
@@ -123,9 +123,9 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index:
             {/* Demo Link Button */}
             <motion.a
               href="#"
-              whileHover={{ scale: 1.15 }}
-              transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              className="p-2.5 rounded-lg border border-white/10 bg-black/50 text-gray-400 hover:bg-[#a855f7] hover:text-white hover:border-[#a855f7] transition-colors"
+              whileHover={{ scale: 1.12 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="p-2.5 rounded-lg border border-white/10 bg-black/50 text-gray-400 hover:bg-[#a855f7] hover:text-white hover:border-[#a855f7] transition-colors duration-300"
               title="Live Terminal"
             >
               <ArrowUpRight size={18} />
@@ -134,7 +134,7 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index:
         </div>
 
         {/* Project Title */}
-        <h3 className="text-xl md:text-2xl font-mono font-bold text-white mb-3 group-hover:text-[#c4b5fd] transition-colors tracking-tight">
+        <h3 className="text-xl md:text-2xl font-mono font-bold text-white mb-3 group-hover:text-[#c4b5fd] transition-colors duration-300 tracking-tight">
           {project.title}
         </h3>
 
@@ -150,7 +150,7 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index:
             <span>SYSTEM_IMPACT:</span>
           </div>
           <p className="text-gray-300 font-sans text-xs leading-relaxed">
-            <TypewriterText text={project.impact} speed={25} delay={300 + index * 100} />
+            <TypewriterText text={project.impact} speed={48} delay={400 + index * 150} />
           </p>
         </div>
       </div>
@@ -162,8 +162,8 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index:
             key={tech}
             initial={{ opacity: 0, x: -10 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
-            transition={{ duration: 0.3, delay: 0.4 + index * 0.1 + techIdx * 0.04 }}
-            className="text-xs font-mono px-2.5 py-1 bg-black/50 border border-white/[0.08] rounded text-gray-300 hover:border-[#a855f7]/50 hover:text-white hover:shadow-[0_0_12px_rgba(168,85,247,0.35)] transition-all cursor-default"
+            transition={{ duration: 0.45, delay: 0.5 + index * 0.15 + techIdx * 0.05, ease: [0.16, 1, 0.3, 1] }}
+            className="text-xs font-mono px-2.5 py-1 bg-black/50 border border-white/[0.08] rounded text-gray-300 hover:border-[#a855f7]/50 hover:text-white hover:shadow-[0_0_12px_rgba(168,85,247,0.35)] transition-all duration-300 cursor-default"
           >
             {tech}
           </motion.span>
@@ -191,14 +191,14 @@ export default function Projects() {
           <div>
             <div className="inline-flex items-center gap-2 font-mono text-xs text-[#a855f7] uppercase tracking-widest mb-3 px-3 py-1 rounded-full bg-[#a855f7]/10 border border-[#a855f7]/25 shadow-[0_0_12px_rgba(168,85,247,0.15)]">
               <Terminal size={14} />
-              <TypewriterText text="// DEPLOYMENTS & REPOSITORIES" speed={35} />
+              <TypewriterText text="// DEPLOYMENTS & REPOSITORIES" speed={45} />
             </div>
 
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="text-3xl sm:text-4xl md:text-5xl font-mono font-extrabold text-white tracking-tight"
             >
               PROJECTS & CASE STUDIES<span className="text-[#a855f7]">.</span>
@@ -208,7 +208,7 @@ export default function Projects() {
               initial={{ width: 0 }}
               whileInView={{ width: "4.5rem" }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="h-1 bg-[#a855f7] mt-4 rounded-full shadow-[0_0_12px_#a855f7]"
             />
           </div>

@@ -11,8 +11,8 @@
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
   
-  --animate-scan: scan 3s linear infinite;
-  --animate-pulse-slow: pulse-slow 4s ease-in-out infinite;
+  --animate-scan: scan 4s linear infinite;
+  --animate-pulse-slow: pulse-slow 5s ease-in-out infinite;
 
   @keyframes scan {
     0% { top: -10%; opacity: 0; }
@@ -37,6 +37,7 @@
   --accent-lavender: #c4b5fd;
   --card: rgba(16, 12, 24, 0.8);
   --card-border: rgba(255, 255, 255, 0.08);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 body {
@@ -73,6 +74,7 @@ body {
 ::-webkit-scrollbar-thumb {
   background: rgba(168, 85, 247, 0.3);
   border-radius: 3px;
+  transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(168, 85, 247, 0.6);
@@ -96,7 +98,7 @@ body {
   color: #ffffff;
   font-weight: 700;
   font-family: var(--font-jetbrains-mono), monospace;
-  transition: all 0.25s ease;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .btn-violet-gradient:hover {
   transform: translateY(-2px);
@@ -104,7 +106,7 @@ body {
 }
 
 .card-hover-lift {
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .card-hover-lift:hover {
   transform: translateY(-4px);

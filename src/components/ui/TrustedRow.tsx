@@ -27,16 +27,16 @@ export default function TrustedRow() {
           {brands.map((brand, i) => (
             <motion.div
               key={brand.name}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="group flex flex-col items-center justify-center p-3 rounded-lg border border-transparent hover:border-[#a855f7]/35 hover:bg-[#a855f7]/5 transition-all cursor-default"
+              transition={{ duration: 0.8, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              className="group flex flex-col items-center justify-center p-3 rounded-lg border border-transparent hover:border-[#a855f7]/35 hover:bg-[#a855f7]/5 transition-all duration-450 ease-out cursor-default"
             >
-              <span className="font-mono font-bold text-sm md:text-base text-gray-400 group-hover:text-[#c4b5fd] transition-colors tracking-wider">
+              <span className="font-mono font-bold text-sm md:text-base text-gray-400 group-hover:text-[#c4b5fd] transition-colors duration-350 tracking-wider">
                 {brand.name}
               </span>
-              <span className="font-mono text-[10px] text-gray-500 group-hover:text-gray-300 transition-colors mt-0.5">
+              <span className="font-mono text-[10px] text-gray-500 group-hover:text-gray-300 transition-colors duration-350 mt-0.5">
                 {brand.tag}
               </span>
             </motion.div>

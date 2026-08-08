@@ -21,8 +21,8 @@ const StatItem = ({ icon: Icon, targetValue, suffix = "+", decimals = 0, label, 
 
   useEffect(() => {
     if (isInView) {
-      const duration = 2000;
-      const steps = 50;
+      const duration = 2400; // Slower, smooth count-up
+      const steps = 60;
       const stepTime = duration / steps;
       let currentStep = 0;
 
@@ -49,20 +49,20 @@ const StatItem = ({ icon: Icon, targetValue, suffix = "+", decimals = 0, label, 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 25 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
-      className="group relative p-6 rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/85 backdrop-blur-md hover:border-[#a855f7]/45 hover:shadow-[0_12px_32px_-8px_rgba(168,85,247,0.2)] transition-all duration-300"
+      transition={{ duration: 0.85, delay, ease: [0.16, 1, 0.3, 1] }}
+      className="group relative p-6 rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/85 backdrop-blur-md hover:border-[#a855f7]/45 hover:shadow-[0_12px_32px_-8px_rgba(168,85,247,0.2)] transition-all duration-450 ease-out"
     >
       <div className="flex items-center justify-between mb-4">
         <span className="font-mono text-xs text-[#9b8fa0] uppercase tracking-widest">{label}</span>
-        <div className="p-2.5 rounded-lg bg-black/50 border border-white/10 text-[#a855f7] group-hover:scale-110 group-hover:bg-[#a855f7]/15 transition-all">
+        <div className="p-2.5 rounded-lg bg-black/50 border border-white/10 text-[#a855f7] group-hover:scale-110 group-hover:bg-[#a855f7]/15 transition-all duration-450 ease-out">
           <Icon size={20} />
         </div>
       </div>
 
-      <div className="text-3xl md:text-4xl lg:text-5xl font-mono font-bold text-white group-hover:text-[#c4b5fd] transition-colors mb-2">
+      <div className="text-3xl md:text-4xl lg:text-5xl font-mono font-bold text-white group-hover:text-[#c4b5fd] transition-colors duration-350 mb-2">
         {displayVal}
         <span className="text-[#a855f7]">{suffix}</span>
       </div>
@@ -82,21 +82,21 @@ export default function StatsBar() {
             targetValue={187}
             label="ALGORITHMS"
             description="LeetCode problems solved in C++, Java, & Python"
-            delay={0.1}
+            delay={0.15}
           />
           <StatItem
             icon={Award}
             targetValue={15}
             label="CERTIFICATIONS"
             description="Industry credentials from Google, Cisco, IBM, NPTEL"
-            delay={0.2}
+            delay={0.3}
           />
           <StatItem
             icon={Flag}
             targetValue={30}
             label="CTF CHALLENGES"
             description="Hands-on web, cryptography, & network labs"
-            delay={0.3}
+            delay={0.45}
           />
           <StatItem
             icon={Clock}
@@ -104,7 +104,7 @@ export default function StatsBar() {
             decimals={1}
             label="TRAINING HOURS"
             description="Verified Security, Red Hat, & Cisco coursework"
-            delay={0.4}
+            delay={0.6}
           />
         </div>
       </div>

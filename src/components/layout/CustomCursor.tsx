@@ -14,8 +14,8 @@ export default function CustomCursor() {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // Smooth trailing spring physics for the target lock ring
-  const springConfig = { stiffness: 180, damping: 18, mass: 0.4 };
+  // Softer spring physics for fluid 180-250ms trailing delay
+  const springConfig = { stiffness: 90, damping: 22, mass: 0.8 };
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
@@ -95,10 +95,10 @@ export default function CustomCursor() {
         animate={{
           scale: isClicking ? 0.6 : isHoveringInteractive ? 1.4 : 1,
         }}
-        transition={{ duration: 0.1 }}
+        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
       />
 
-      {/* 2. Trailing Radar Target Lock Ring with Continuous Rotating Dashed Border */}
+      {/* 2. Trailing Radar Target Lock Ring with Continuous Slow Rotating Dashed Border */}
       <motion.div
         className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9998] flex items-center justify-center"
         style={{
@@ -108,9 +108,9 @@ export default function CustomCursor() {
           translateY: "-50%",
         }}
       >
-        {/* Rotating Outer Radar Dashed Ring */}
+        {/* Slow, Deliberate Outer Radar Dashed Ring (6s default -> 3.5s hover) */}
         <motion.div
-          className={`absolute inset-0 rounded-full border border-dashed transition-all duration-300 ${
+          className={`absolute inset-0 rounded-full border border-dashed transition-all duration-500 ease-out ${
             isHoveringInteractive
               ? "border-[#a855f7] bg-[#a855f7]/15 scale-125"
               : isHoveringCard
@@ -120,29 +120,34 @@ export default function CustomCursor() {
           animate={{ rotate: 360 }}
           transition={{
             repeat: Infinity,
-            duration: isHoveringInteractive ? 2 : 6,
+            duration: isHoveringInteractive ? 3.5 : 6,
             ease: "linear",
           }}
         />
 
         {/* Crosshair Cardinal Tick Marks (on card hover) */}
         {isHoveringCard && (
-          <div className="absolute inset-0 pointer-events-none">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+            className="absolute inset-0 pointer-events-none"
+          >
             <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 w-[1px] h-1.5 bg-[#a855f7]" />
             <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1 w-[1px] h-1.5 bg-[#a855f7]" />
             <span className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-1.5 h-[1px] bg-[#a855f7]" />
             <span className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 w-1.5 h-[1px] bg-[#a855f7]" />
-          </div>
+          </motion.div>
         )}
       </motion.div>
 
-      {/* 3. Click Scan Pulse Effect */}
+      {/* 3. Slow Gentle Click Scan Pulse Effect (450ms) */}
       {clickRipples.map((ripple) => (
         <motion.div
           key={ripple.id}
-          initial={{ scale: 0.2, opacity: 0.9 }}
-          animate={{ scale: 2.6, opacity: 0 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          initial={{ scale: 0.2, opacity: 0.85 }}
+          animate={{ scale: 2.8, opacity: 0 }}
+          transition={{ duration: 0.48, ease: [0.16, 1, 0.3, 1] }}
           onAnimationComplete={() => {
             setClickRipples((prev) => prev.filter((r) => r.id !== ripple.id));
           }}

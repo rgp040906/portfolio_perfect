@@ -13,6 +13,7 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-14"
         >
           <div className="inline-flex items-center gap-2 font-mono text-xs text-[#a855f7] uppercase tracking-widest mb-2">
@@ -30,10 +31,10 @@ export default function About() {
           {/* Left Column: Code Profile Object */}
           <div className="lg:col-span-7">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -25 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/85 backdrop-blur-md p-6 md:p-8 font-mono text-sm leading-relaxed shadow-xl"
             >
               {/* Code Editor Header */}
@@ -93,8 +94,8 @@ export default function About() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/90 p-6 md:p-8 flex flex-col justify-between relative overflow-hidden group hover:border-[#a855f7]/40 transition-colors shadow-xl"
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              className="rounded-xl border border-white/[0.08] border-t-white/20 bg-[#0f0b18]/90 p-6 md:p-8 flex flex-col justify-between relative overflow-hidden group hover:border-[#a855f7]/40 transition-colors duration-450 shadow-xl"
             >
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-2">
