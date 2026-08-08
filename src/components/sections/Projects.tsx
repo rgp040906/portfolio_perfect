@@ -11,7 +11,7 @@ const iconMap: Record<string, any> = {
 };
 
 // Typewriter Component for Terminal Eyebrow & Impact
-const TypewriterText = ({ text, speed = 40, delay = 0, className = "" }: { text: string; speed?: number; delay?: number; className?: string }) => {
+const TypewriterText = ({ text, speed = 35, delay = 0, className = "" }: { text: string; speed?: number; delay?: number; className?: string }) => {
   const [displayedText, setDisplayedText] = useState("");
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const ref = useRef(null);
@@ -66,6 +66,24 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index:
           : "border-white/[0.08] hover:border-[#a855f7]/50 hover:border-t-2 hover:border-t-[#a855f7] hover:shadow-[0_12px_36px_-8px_rgba(168,85,247,0.22)]"
       }`}
     >
+      {/* Terminal Boot SVG Border-Draw Outline Effect */}
+      <svg className="pointer-events-none absolute inset-0 w-full h-full rounded-xl overflow-visible z-30">
+        <motion.rect
+          x="0"
+          y="0"
+          width="100%"
+          height="100%"
+          rx="12"
+          fill="none"
+          stroke="#a855f7"
+          strokeWidth="2"
+          strokeDasharray="1200"
+          initial={{ strokeDashoffset: 1200, opacity: 0 }}
+          animate={isInView ? { strokeDashoffset: 0, opacity: [0, 1, 1, 0.35] } : { strokeDashoffset: 1200, opacity: 0 }}
+          transition={{ duration: 1.3, delay: index * 0.14, ease: "easeInOut" }}
+        />
+      </svg>
+
       {/* Hover Scanline Sweep Line */}
       <div className="pointer-events-none absolute inset-x-0 h-[2px] bg-[#a855f7] shadow-[0_0_12px_#a855f7] opacity-0 group-hover:opacity-100 -translate-y-full group-hover:translate-y-[450px] transition-all duration-700 ease-in-out z-20" />
 
